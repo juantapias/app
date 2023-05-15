@@ -11,7 +11,7 @@ export default function Categories () {
               <button>Ver más</button>
             </div>
 
-            <div className="space-x-4 overflow-x-scroll not-scroll">
+            <div className="space-x-4 flex overflow-x-scroll not-scroll">
               {Array.from(new Array(10)).map((_, key) => (
                 <button key={key} className="btn-category">category</button>
               ))}
