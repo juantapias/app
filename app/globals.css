@@ -1,0 +1,249 @@
+/* - - - - - - - - -  
+* Import taildwind
+* - - - - - - - - -  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* - - - - - - - - -  
+* Fonts
+* - - - - - - - - -  */
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Thin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-ExtraLight.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Light.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Medium.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-SemiBold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Bold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-ExtraBold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../assets/fonts/Montserrat/Montserrat-Black.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/* - - - - - - - - -  
+* Colors
+* - - - - - - - - -  */
+
+:root {
+  --white: #FFF;
+  --black: #000;
+}
+
+/* - - - - - - - - -  
+* Universal
+* - - - - - - - - -  */
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #F0F0F0;
+  margin-bottom: 100px;
+}
+
+/* - - - - - - - - -  
+* Animation
+* - - - - - - - - -  */
+
+@keyframes skeleton {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+/* - - - - - - - - -
+* Class
+* - - - - - - - - -  */
+
+.btn-sm {
+  align-items: center;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-md {
+  align-items: center;
+  border-radius: 18px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  transition: all 300ms ease-in-out;
+  width: 128px;
+}
+
+.btn-lg {
+  align-items: center;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-category {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 4px 8px;
+}
+
+.not-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* - - - - - - - - -
+* Skelentons
+* - - - - - - - - -  */
+
+.skeleton-active {
+  background-color: #DDDBDD;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-active::after {
+  animation: skeleton 2s infinite;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, .5) 60%, rgba(255, 255, 255, 0) 100%);
+  content: '';
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.skeleton-circular {
+  border-radius: 999px;
+}
+
+.skeleton-rectangular {
+  border-radius: 0;
+}
+
+.skeleton-rounded {
+  border-radius: 16px;
+}
+
+.skeleton-rounded-full {
+  border-radius: 100%;
+}
+
+/* - - - - - - - - -
+* DetailProduct
+* - - - - - - - - -  */
+
+.detail-producs {
+  background-color: #F0F0F0;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  transition: all 300ms ease;
+  transform: translateY(1000px);
+  width: 100%;
+
+  &.active {
+    transform: translateY(0px);
+  }
+}
+
+.detail-producs .content-detail {
+  height: 100%;
+  max-height: 70%;
+  overflow-y: scroll;
+  padding-bottom: 80px;
+}
