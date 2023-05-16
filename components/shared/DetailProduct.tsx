@@ -1,6 +1,12 @@
 'use client'
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 
 import { classNames } from '@/helpers'
 
@@ -17,22 +23,22 @@ export default function DetailProduct ({
   isDetailProduct,
   dispatchDetailProduct
 }: IDetailProduct) {
+  const ref = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState<boolean>(false)
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+    if (ref.current) {
+      ref.current.addEventListener('scroll', handleScroll, { passive: true })
     }
   }, [])
 
   const handleScroll = () => {
-    const position = window.pageYOffset
+    const scrolled = ref.current && ref.current.scrollTop
 
-    if (position < 200) {
-      setIsSticky(false)
-    } else {
+    if (scrolled && scrolled >= 150) {
       setIsSticky(true)
+    } else {
+      setIsSticky(false)
     }
   }
 
@@ -45,7 +51,10 @@ export default function DetailProduct ({
   }
 
   return (
-    <div className={classNames(isDetailProduct && 'active', 'detail-producs')}>
+    <div
+      ref={ref}
+      className={classNames(isDetailProduct && 'active', 'detail-products')}
+    >
       <div className='container mx-auto'>
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-1'>
@@ -109,7 +118,7 @@ export default function DetailProduct ({
                   sapiente?
                 </p>
 
-                <p className="font-semibold text-2xl text-center">32.00$</p>
+                <p className='font-semibold text-2xl text-center'>32.00$</p>
 
                 <button className='btn-md bg-red-200 mx-auto'>Agregar</button>
               </div>

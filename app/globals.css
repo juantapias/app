@@ -227,7 +227,7 @@ body {
 * DetailProduct
 * - - - - - - - - -  */
 
-.detail-producs {
+.detail-products {
   background-color: #F0F0F0;
   height: 100%;
   position: fixed;
@@ -237,12 +237,12 @@ body {
   width: 100%;
 }
 
-.detail-producs.active {
+.detail-products.active {
   overflow-y: scroll;
   padding-bottom: 80px;
   transform: translateY(0px);
 }
 
-.detail-producs .header-detail {
+.detail-products .header-detail {
   margin-top: -40px;
 }
