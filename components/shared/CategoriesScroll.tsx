@@ -20,19 +20,21 @@ export default function CategoriesScroll ({ categories }: Categoies) {
               <Link href='/menu/category'>Ver más</Link>
             </div>
 
-            <div className='space-x-4 flex overflow-x-scroll not-scroll'>
-              {categories.map((category, key) => (
-                <SkeletonWrap
-                  loading={false}
-                  variant='rounded'
-                  height='32px'
-                  width='76px'
-                >
-                  <button key={key} className='btn-category'>
-                    {category.title}
-                  </button>
-                </SkeletonWrap>
-              ))}
+            <div className='inline-flex overflow-x-scroll not-scroll'>
+              <div className='space-x-4 flex'>
+                {categories.map((category, key) => (
+                  <SkeletonWrap
+                    loading={false}
+                    variant='rounded'
+                    height='32px'
+                    width='76px'
+                  >
+                    <button key={key} className='btn-category'>
+                      {category.title}
+                    </button>
+                  </SkeletonWrap>
+                ))}
+              </div>
             </div>
           </div>
         </div>
