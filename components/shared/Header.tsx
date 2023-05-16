@@ -1,4 +1,8 @@
+'use client'
+
 import React from 'react'
+import { useRouter } from 'next/navigation'
+
 import { MdChevronLeft, MdSearch } from 'react-icons/md'
 
 type IHeader = {
@@ -8,13 +12,17 @@ type IHeader = {
 }
 
 export default function Header ({ goBack, title, search }: IHeader) {
+  const router = useRouter()
   return (
     <header className='py-2 mb-5'>
       <div className='container mx-auto px-4'>
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-3'>
             {goBack && (
-              <button className='flex items-center justify-center bg-white rounded-full h-10 w-10 shadow-md float-right'>
+              <button
+                className='flex items-center justify-center bg-white rounded-full h-10 w-10 shadow-md float-right'
+                onClick={() => router.back()}
+              >
                 <MdChevronLeft size={25} />
               </button>
             )}

@@ -1,5 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import Image from 'next/legacy/image'
+'use client'
+
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import { classNames } from '@/helpers'
 
@@ -16,6 +17,25 @@ export default function DetailProduct ({
   isDetailProduct,
   dispatchDetailProduct
 }: IDetailProduct) {
+  const [isSticky, setIsSticky] = useState<boolean>(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const handleScroll = () => {
+    const position = window.pageYOffset
+
+    if (position < 200) {
+      setIsSticky(false)
+    } else {
+      setIsSticky(true)
+    }
+  }
+
   const styleBannerProduct = {
     backgroundImage: `url('${Test.src}')`,
     backgroundPosition: 'center bottom',
@@ -30,13 +50,19 @@ export default function DetailProduct ({
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-1'>
             {/* Header */}
-            <div className='header-detail'>
-              <div
-                style={styleBannerProduct}
-                className='py-2 px-4 rounded-t-3xl'
-              >
+            <div
+              className={classNames(
+                isSticky ? 'bg-white top-0' : 'bg-transparent top-3',
+                'sticky left-0 w-full px-4'
+              )}
+            >
+              <div className='flex items-center justify-center'>
+                {isSticky && <h1 className='font-semibold text-xl'>Prueba</h1>}
                 <button
-                  className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'
+                  className={classNames(
+                    !isSticky && 'shadow-md',
+                    'flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10'
+                  )}
                   onClick={() => {
                     dispatchDetailProduct(false)
                   }}
@@ -46,10 +72,18 @@ export default function DetailProduct ({
               </div>
             </div>
 
+            {/* Banner */}
+            <div className='header-detail'>
+              <div
+                style={styleBannerProduct}
+                className='py-2 px-4 rounded-t-3xl'
+              ></div>
+            </div>
+
             {/* Content */}
             <div className='content-detail not-scroll'>
               <div className='grid grid-cols-1 gap-6 p-4'>
-                <h1 className="text-lg font-semibold">Prueba</h1>
+                <h1 className='text-lg font-semibold'>Prueba</h1>
 
                 <p>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -75,7 +109,7 @@ export default function DetailProduct ({
                   sapiente?
                 </p>
 
-                <p>32.00$</p>
+                <p className="font-semibold text-2xl text-center">32.00$</p>
 
                 <button className='btn-md bg-red-200 mx-auto'>Agregar</button>
               </div>
