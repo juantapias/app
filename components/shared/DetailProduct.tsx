@@ -57,7 +57,7 @@ export default function DetailProduct ({
               )}
             >
               <div className='flex items-center justify-center'>
-                {isSticky && <h1 className='text-center'>Prueba</h1>}
+                {isSticky && <h1 className='font-semibold text-xl'>Prueba</h1>}
                 <button
                   className={classNames(
                     !isSticky && 'shadow-md',
@@ -109,7 +109,7 @@ export default function DetailProduct ({
                   sapiente?
                 </p>
 
-                <p>32.00$</p>
+                <p className="font-semibold text-2xl text-center">32.00$</p>
 
                 <button className='btn-md bg-red-200 mx-auto'>Agregar</button>
               </div>
