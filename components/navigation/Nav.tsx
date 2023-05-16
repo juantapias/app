@@ -26,7 +26,7 @@ const menuItem = [
   {
     label: 'Promociones',
     icon: <MdLocalOffer size={30} />,
-    link: '/proms'
+    link: '/promotions'
   },
   {
     label: 'Reservas',

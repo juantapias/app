@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react'
 import Header from '@/components/shared/Header'
+import ReservationForm from '@/components/forms/ReservationForm'
 
 export default function Reservation () {
   return (
     <Fragment>
       <Header title='Reservas' search />
-      <main>Reservas</main>
+      <main>
+        <ReservationForm />
+      </main>
     </Fragment>
   )
 }

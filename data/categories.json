@@ -1,10 +1,34 @@
 [
-    {
-        "title": "Bebidas",
-        "tag": "drinks"
-    },
-    {
-        "title": "Postres",
-        "tag": "desserts"
-    }
+  {
+    "title": "Pizzas",
+    "tag": "pizzas"
+  },
+  {
+    "title": "Hamburguesas",
+    "tag": "hamburguer"
+  },
+  {
+    "title": "Sopas",
+    "tag": "soup"
+  },
+  {
+    "title": "Jugos",
+    "tag": "drinks"
+  },
+  {
+    "title": "Licores",
+    "tag": "liquors"
+  },
+  {
+    "title": "Postres",
+    "tag": "desserts"
+  },
+  {
+    "title": "Adiciones",
+    "tag": "additions"
+  },
+  {
+    "title": "Recomendaciones",
+    "tag": "recommendations"
+  }
 ]

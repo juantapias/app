@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { MdChevronLeft, MdSearch } from 'react-icons/md'
@@ -30,9 +31,9 @@ export default function Header ({ goBack, title, search }: IHeader) {
               <h1 className='text-center'>{title}</h1>
             </div>
             {search && (
-              <button className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'>
+              <Link href="/search" className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'>
                 <MdSearch size={25} />
-              </button>
+              </Link>
             )}
           </div>
         </div>
