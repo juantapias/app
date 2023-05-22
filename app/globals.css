@@ -175,6 +175,15 @@ body {
   transition: all 300ms ease-in-out;
 }
 
+.btn-full {
+  align-items: center;
+  border-radius: 18px;
+  display: flex;
+  height: 40px;
+  transition: all 300ms ease-in-out;
+  width: 100%;
+}
+
 .btn-category {
   background-color: var(--white);
   border-radius: 12px;

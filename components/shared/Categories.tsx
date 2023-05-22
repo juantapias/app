@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { ICategories } from '@/utils/types'
+import { ICategory } from '@/utils/types'
 
 import SkeletonWrap from '@/components/skeletons/SkeletonWrap'
 import ArticleCategory from '@/components/articles/ArticleCategory'
 
 type Categories = {
-  categories: ICategories[]
+  categories: ICategory[]
 }
 
 export default function Categories ({ categories }: Categories) {

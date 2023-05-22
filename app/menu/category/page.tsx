@@ -5,7 +5,7 @@ import Categories from '@/components/shared/Categories'
 
 import CategoriesData from '@/data/categories.json'
 
-export default function Category () {
+export default function Page () {
   return (
     <Fragment>
       <Header title='Categorías' goBack search />

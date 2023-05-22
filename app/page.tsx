@@ -1,9 +1,10 @@
 import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
 
-import Header from '@/components/shared/Header'
-import Proms from '@/components/shared/Proms'
+const Header = dynamic(() => import('@/components/shared/Header'))
+const Proms = dynamic(() => import('@/components/shared/Proms'))
 
-export default function Home () {
+export default function Page () {
   return (
     <Fragment>
       <Header title='Inicio' search />
