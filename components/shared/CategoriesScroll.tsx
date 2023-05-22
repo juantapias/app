@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 import SkeletonWrap from '@/components/skeletons/SkeletonWrap'
 
-import { ICategories } from '@/utils/types'
+import { ICategory } from '@/utils/types'
 
 type Categoies = {
-  categories: ICategories[]
+  categories: ICategory[]
 }
 
 export default function CategoriesScroll ({ categories }: Categoies) {
