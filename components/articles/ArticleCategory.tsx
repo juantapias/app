@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { ICategories } from '@/utils/types'
+import { ICategory } from '@/utils/types'
 
 type ArticleCategory = {
-  category: ICategories
+  category: ICategory
 }
 
 export default function ArticleCategory ({ category }: ArticleCategory) {
