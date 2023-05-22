@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 
-const Header = dynamic(() => import('@/components/shared/Header'))
-const SearchForm = dynamic(() => import('@/components/forms/SearchForm'))
+import Header from '../../components/shared/Header'
+import SearchForm from '../../components/forms/SearchForm'
 
 export default function Page () {
   return (
