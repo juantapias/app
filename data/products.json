@@ -1,41 +1,31 @@
 [
   {
-    "title": "Hola mundo",
+    "title": "Pizza Peperoni",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Hola mundo",
+    "title": "Pizza Hawaina",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Hola mundo",
+    "title": "Pizza beff",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Hola mundo",
+    "title": "Pizza Veggie",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Hola mundo",
+    "title": "Pizza Española",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Hola mundo",
-    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
-    "price": "32.00"
-  },
-  {
-    "title": "Hola mundo",
-    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
-    "price": "32.00"
-  },
-  {
-    "title": "Hola mundo",
+    "title": "Pizza Argentina",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   }

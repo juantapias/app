@@ -6,23 +6,28 @@ import Image from 'next/legacy/image'
 import { RiFireFill } from 'react-icons/ri'
 
 import Test from '@/assets/images/test.jpg'
-import { IProducts } from '@/utils/types'
+import { IProduct } from '@/utils/types'
 
 type IArticleProduct = {
-  product: IProducts
+  product: IProduct
+  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
 export default function ArticleProduct ({
   product,
+  dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProduct) {
+  const handleSelectedProduct = () => {
+    dispatchSelectedProduct(product)
+    dispatchDetailProduct(true)
+  }
+
   return (
     <article
       className='bg-white p-4 rounded-xl flex items-center space-x-4'
-      onClick={() => {
-        dispatchDetailProduct(true)
-      }}
+      onClick={handleSelectedProduct}
     >
       <figure className='w-1/2'>
         <Image

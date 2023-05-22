@@ -6,13 +6,14 @@ import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProducts from '../articles/ArticleProducts'
 import DetailProduct from './DetailProduct'
 
-import { IProducts } from '@/utils/types'
+import { IProduct } from '@/utils/types'
 
 type Products = {
-  products: IProducts[]
+  products: IProduct[]
 }
 
 export default function Products ({ products }: Products) {
+  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
     <section className='products'>
@@ -28,6 +29,7 @@ export default function Products ({ products }: Products) {
               >
                 <ArticleProducts
                   product={product}
+                  dispatchSelectedProduct={setSelectedProduct}
                   dispatchDetailProduct={setIsDetailProduct}
                 />
               </SkeletonWrap>
@@ -38,6 +40,8 @@ export default function Products ({ products }: Products) {
 
       <DetailProduct
         isDetailProduct={isDetailProduct}
+        product={selectedProduct}
+        dispatchSelectedProduct={setSelectedProduct}
         dispatchDetailProduct={setIsDetailProduct}
       />
     </section>

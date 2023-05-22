@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
 import './globals.css'
 
-import Nav from '../components/navigation/Nav'
+import Nav from '@/components/navigation/Nav'
+import SuspenseLoading from '@/components/shared/Loading'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,12 +16,14 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en'>
-      <body>
-        {children}
-        <footer>
-          <Nav />
-        </footer>
-      </body>
+      <Suspense fallback={<SuspenseLoading />}>
+        <body>
+          {children}
+          <footer>
+            <Nav />
+          </footer>
+        </body>
+      </Suspense>
     </html>
   )
 }

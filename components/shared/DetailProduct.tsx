@@ -9,18 +9,24 @@ import React, {
 } from 'react'
 
 import { classNames } from '@/helpers'
+import { IProduct } from '@/utils/types'
 
 import { MdClose } from 'react-icons/md'
 
 import Test from '@/assets/images/test.jpg'
+import InputNumber from '../forms/InputNumber'
 
 type IDetailProduct = {
   isDetailProduct: boolean
+  product: IProduct | undefined
+  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
 export default function DetailProduct ({
   isDetailProduct,
+  product,
+  dispatchSelectedProduct,
   dispatchDetailProduct
 }: IDetailProduct) {
   const ref = useRef<HTMLDivElement>(null)
@@ -66,7 +72,9 @@ export default function DetailProduct ({
               )}
             >
               <div className='flex items-center justify-center'>
-                {isSticky && <h1 className='font-semibold text-xl'>Prueba</h1>}
+                {isSticky && (
+                  <h1 className='font-semibold text-xl'>{product?.title}</h1>
+                )}
                 <button
                   className={classNames(
                     !isSticky && 'shadow-md',
@@ -74,6 +82,7 @@ export default function DetailProduct ({
                   )}
                   onClick={() => {
                     dispatchDetailProduct(false)
+                    dispatchSelectedProduct(undefined)
                   }}
                 >
                   <MdClose size={20} />
@@ -92,35 +101,28 @@ export default function DetailProduct ({
             {/* Content */}
             <div className='content-detail not-scroll'>
               <div className='grid grid-cols-1 gap-6 p-4'>
-                <h1 className='text-lg font-semibold'>Prueba</h1>
+                <h1 className='text-lg font-semibold'>{product?.title}</h1>
 
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae
-                  reiciendis iusto quas laudantium, accusantium velit accusamus
-                  impedit quibusdam deserunt totam. Provident minus dolorem ea
-                  sapiente?
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: product?.description || ''
+                  }}
+                />
+
+                <p className='font-semibold text-2xl text-center'>
+                  {product?.price}$
                 </p>
 
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae
-                  reiciendis iusto quas laudantium, accusantium velit accusamus
-                  impedit quibusdam deserunt totam. Provident minus dolorem ea
-                  sapiente?
-                </p>
-
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae
-                  reiciendis iusto quas laudantium, accusantium velit accusamus
-                  impedit quibusdam deserunt totam. Provident minus dolorem ea
-                  sapiente?
-                </p>
-
-                <p className='font-semibold text-2xl text-center'>32.00$</p>
-
-                <button className='btn-md bg-red-200 mx-auto'>Agregar</button>
+                <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>
+                  <div className='w-1/2'>
+                    <InputNumber defaultValue={1} min={1} />
+                  </div>
+                  <div className='w-1/2'>
+                    <button className='btn-full justify-around bg-red-200 mx-auto'>
+                      <span>Agregar</span> <span>{product?.price}</span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

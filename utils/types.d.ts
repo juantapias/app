@@ -1,10 +1,10 @@
-export interface IProducts {
+export interface IProduct {
   title: string
   description: string
   price: string
 }
 
-export interface ICategories {
+export interface ICategory {
   title: string
   tag: string
 }
