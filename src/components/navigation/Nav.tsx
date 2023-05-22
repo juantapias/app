@@ -39,7 +39,7 @@ export default function Nav () {
   const pathname = usePathname()
 
   return (
-    <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full'>
+    <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full z-10'>
       <div className='grid grid-rows-1'>
         <div className='grid grid-cols-4'>
           {menuItem.map((menu, key) => (
