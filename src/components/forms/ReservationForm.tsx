@@ -100,7 +100,7 @@ export default function ReservationForm () {
           {...register('event', { required: true })}
           id='event'
           defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2'
+          className='h-10 outline-none rounded-lg indent-2 bg-white'
         >
           <option value='' disabled>
             Selecciona
@@ -120,7 +120,7 @@ export default function ReservationForm () {
           {...register('people', { required: true })}
           id='people'
           defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2'
+          className='h-10 outline-none rounded-lg indent-2 bg-white'
         >
           <option value='' disabled>
             Selecciona
