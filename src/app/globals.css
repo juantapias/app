@@ -185,9 +185,14 @@ body {
 }
 
 .btn-category {
+  align-items: center;
+  display: flex;
   background-color: var(--white);
-  border-radius: 12px;
+  border-radius: 99px;
+  height: 90px;
+  justify-content: center;
   padding: 4px 8px;
+  width: 90px;
 }
 
 .not-scroll::-webkit-scrollbar {

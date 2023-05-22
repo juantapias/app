@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SkeletonWrap from '@/components/skeletons/SkeletonWrap'
-import ArticleProms from '@/components/articles/ArticleProms'
+import SkeletonWrap from '../skeletons/SkeletonWrap'
+import ArticleProms from '../articles/ArticleProms'
 
 export default function Proms () {
   return (
