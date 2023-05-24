@@ -1,8 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import { classNames } from '@/helpers'
+import Services from '../shared/Services'
 
 import {
   MdHome,
@@ -10,7 +13,7 @@ import {
   MdLocalOffer,
   MdRoomService
 } from 'react-icons/md'
-import { classNames } from '@/helpers'
+import { useAppStateContext } from '@/context/AppStateContext'
 
 const menuItem = [
   {
@@ -38,25 +41,33 @@ const menuItem = [
 export default function Nav () {
   const pathname = usePathname()
 
+  const { isServices } = useAppStateContext()
+
   return (
-    <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full z-10'>
-      <div className='grid grid-rows-1'>
-        <div className='grid grid-cols-4'>
-          {menuItem.map((menu, key) => (
-            <Link
-              key={key}
-              href={menu.link}
-              className={classNames(
-                pathname === menu.link ? 'text-red-400' : 'text-black',
-                'flex flex-col items-center text-xs transition ease-in-out duration-200 hover:text-red-400'
-              )}
-            >
-              {menu.icon}
-              {menu.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </nav>
+    <Fragment>
+      {isServices ? (
+        <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full z-10'>
+          <div className='grid grid-rows-1'>
+            <div className='grid grid-cols-4'>
+              {menuItem.map((menu, key) => (
+                <Link
+                  key={key}
+                  href={menu.link}
+                  className={classNames(
+                    pathname === menu.link ? 'text-red-400' : 'text-black',
+                    'flex flex-col items-center text-xs transition ease-in-out duration-200 hover:text-red-400'
+                  )}
+                >
+                  {menu.icon}
+                  {menu.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </nav>
+      ) : (
+        <Services />
+      )}
+    </Fragment>
   )
 }
