@@ -5,6 +5,6 @@ export interface IProduct {
 }
 
 export interface ICategory {
-  title: string
+  name: string
   tag: string
 }
