@@ -1,9 +1,37 @@
-import React from 'react'
+'use client'
 
-export default function Banner() {
+import React, { Dispatch, SetStateAction, useState } from 'react'
+
+import DetailProduct from './DetailProduct'
+
+import { IProduct } from '../../utils/types'
+import ArticleBanner from '../articles/ArticleBanner'
+
+type IBanner = {
+  banners: IProduct[]
+}
+
+export default function Banner ({ banners }: IBanner) {
+  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+  const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
+
   return (
-    <section className="bg-white h-40 flex items-center justify-center">
-        Banner
+    <section className='banner'>
+      {banners.map((banner, key) => (
+        <ArticleBanner
+          key={key}
+          banner={banner}
+          dispatchSelectedProduct={setSelectedProduct}
+          dispatchDetailProduct={setIsDetailProduct}
+        />
+      ))}
+
+      <DetailProduct
+        isDetailProduct={isDetailProduct}
+        product={selectedProduct}
+        dispatchSelectedProduct={setSelectedProduct}
+        dispatchDetailProduct={setIsDetailProduct}
+      />
     </section>
   )
 }
