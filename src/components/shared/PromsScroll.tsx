@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { IProduct } from '@/utils/types'
+import { IProduct } from '../../utils/types'
 
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProms from '../articles/ArticleProms'

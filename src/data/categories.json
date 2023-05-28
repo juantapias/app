@@ -1,34 +1,34 @@
 [
   {
-    "title": "Pizzas",
+    "name": "Pizzas",
     "tag": "pizzas"
   },
   {
-    "title": "Hamburguesas",
+    "name": "Hamburguesas",
     "tag": "hamburguer"
   },
   {
-    "title": "Sopas",
+    "name": "Sopas",
     "tag": "soup"
   },
   {
-    "title": "Jugos",
+    "name": "Jugos",
     "tag": "drinks"
   },
   {
-    "title": "Licores",
+    "name": "Licores",
     "tag": "liquors"
   },
   {
-    "title": "Postres",
+    "name": "Postres",
     "tag": "desserts"
   },
   {
-    "title": "Adiciones",
+    "name": "Adiciones",
     "tag": "additions"
   },
   {
-    "title": "Recomendaciones",
+    "name": "Recomendaciones",
     "tag": "recommendations"
   }
 ]

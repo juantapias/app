@@ -22,7 +22,7 @@ export default function ArticleBanner ({
       className='bg-white h-40 flex items-center justify-center rounded-lg'
       onClick={handleSelectedProduct}
     >
-      <div>{banner.title}</div>
+      <div>{banner.name}</div>
     </article>
   )
 }

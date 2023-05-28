@@ -9,10 +9,11 @@ import DetailProduct from './DetailProduct'
 import { IProduct } from '@/utils/types'
 
 type Products = {
+  loading: boolean
   products: IProduct[]
 }
 
-export default function Products ({ products }: Products) {
+export default function Products ({ loading, products }: Products) {
   const [selectedProduct, setSelectedProduct] = useState<IProduct>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
@@ -20,10 +21,10 @@ export default function Products ({ products }: Products) {
       <div className='container mx-auto px-4'>
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-1 gap-4'>
-            {products.map((product, key) => (
+            {products?.map((product, key) => (
               <SkeletonWrap
                 key={key}
-                loading={false}
+                loading={loading}
                 variant='rounded'
                 height='136px'
               >

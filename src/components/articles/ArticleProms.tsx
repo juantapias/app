@@ -1,5 +1,5 @@
-import { IProduct } from '@/utils/types'
 import React, { Dispatch, SetStateAction } from 'react'
+import { IProduct } from '../../utils/types'
 
 type IArticleProms = {
   product: IProduct
@@ -22,7 +22,7 @@ export default function ArticleProms ({
       className='h-32 w-64 rounded-lg flex items-center justify-center bg-white'
       onClick={handleSelectedProduct}
     >
-      {product.title}
+      {product.name}
     </div>
   )
 }

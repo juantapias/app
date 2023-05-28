@@ -35,9 +35,9 @@ export default function CategoriesScroll ({ categories }: Categoies) {
                         icon
                       </button>
                       <span className='text-xs'>
-                        {category.title.length > 9
-                          ? `${category.title.substring(0, 9)}...`
-                          : category.title}
+                        {category.name.length > 9
+                          ? `${category.name.substring(0, 9)}...`
+                          : category.name}
                       </span>
                     </div>
                   </SkeletonWrap>

@@ -77,7 +77,7 @@ export default function DetailProduct ({
             >
               <div className='flex items-center justify-center'>
                 {isSticky && (
-                  <h1 className='font-semibold text-xl'>{product?.title}</h1>
+                  <h1 className='font-semibold text-xl'>{product?.name}</h1>
                 )}
                 <button
                   className={classNames(
@@ -105,7 +105,7 @@ export default function DetailProduct ({
             {/* Content */}
             <div className='content-detail not-scroll'>
               <div className='grid grid-cols-1 gap-6 p-4'>
-                <h1 className='text-lg font-semibold'>{product?.title}</h1>
+                <h1 className='text-lg font-semibold'>{product?.name}</h1>
 
                 <div
                   dangerouslySetInnerHTML={{

@@ -1,10 +1,10 @@
 export interface IProduct {
-  title: string
+  name: string
   description: string
   price: string
 }
 
 export interface ICategory {
-  title: string
+  name: string
   tag: string
 }

@@ -2,6 +2,9 @@
 
 import React, { Fragment, useEffect } from 'react'
 
+import { useQuery } from '@tanstack/react-query'
+import { useProducts } from '@/hooks'
+
 import { useAppStateContext } from '../../context/AppStateContext'
 
 import Header from '../../components/shared/Header'
@@ -16,6 +19,12 @@ type Props = {
 }
 
 export default function Page ({ searchParams }: Props) {
+  const { isLoading, data, isError, error } = useQuery({
+    queryKey: ['products'],
+    queryFn: useProducts
+  })
+  console.log('🚀 ~ file: page.tsx:26 ~ Page ~ isLoading:', isLoading)
+
   const { setIsServices, setInRestaurant } = useAppStateContext()
 
   useEffect(() => {
@@ -29,7 +38,7 @@ export default function Page ({ searchParams }: Props) {
       <Header title='Menú' search />
       <main className='space-y-5'>
         <CategoriesScroll categories={CategoriesData} />
-        <Products products={ProductsData} />
+        <Products products={data} loading={isLoading} />
       </main>
     </Fragment>
   )

@@ -1,26 +1,26 @@
 [
   {
-    "title": "Prueba",
+    "name": "Prueba",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "22.00"
   },
   {
-    "title": "Prueba",
+    "name": "Prueba",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "12.00"
   },
   {
-    "title": "Prueba",
+    "name": "Prueba",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Prueba",
+    "name": "Prueba",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "42.00"
   },
   {
-    "title": "Prueba",
+    "name": "Prueba",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "52.00"
   }
