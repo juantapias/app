@@ -19,7 +19,7 @@ export default function ArticleBanner ({
   }
   return (
     <article
-      className='bg-white h-40 flex items-center justify-center'
+      className='bg-white h-40 flex items-center justify-center rounded-lg'
       onClick={handleSelectedProduct}
     >
       <div>{banner.title}</div>

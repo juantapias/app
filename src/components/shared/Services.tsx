@@ -79,7 +79,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
         <label htmlFor='city'>Ciudad</label>
         <select
           id='city'
-          className='h-10 outline-none inset-2 border border-gray-400 rounded-full'
+          className='h-10 outline-none inset-2 border border-gray-400 rounded-full bg-white'
           defaultValue=''
         >
           <option value=''>Selecciona</option>
@@ -133,7 +133,7 @@ const Store = ({ dispatchServices }: IStore) => {
         <select
           id='selected-store'
           defaultValue=''
-          className='h-10 outline-none inset-2 border border-gray-400 rounded-full'
+          className='h-10 outline-none inset-2 border border-gray-400 rounded-full bg-white'
         >
           <option value=''>Selecciona</option>
           <option value=''>Laureles (Cq. 4 ##73-04)</option>

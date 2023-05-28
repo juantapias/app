@@ -6,6 +6,7 @@ import DetailProduct from './DetailProduct'
 
 import { IProduct } from '../../utils/types'
 import ArticleBanner from '../articles/ArticleBanner'
+import SkeletonWrap from '../skeletons/SkeletonWrap'
 
 type IBanner = {
   banners: IProduct[]
@@ -18,12 +19,13 @@ export default function Banner ({ banners }: IBanner) {
   return (
     <section className='banner'>
       {banners.map((banner, key) => (
-        <ArticleBanner
-          key={key}
-          banner={banner}
-          dispatchSelectedProduct={setSelectedProduct}
-          dispatchDetailProduct={setIsDetailProduct}
-        />
+        <SkeletonWrap key={key} loading={false} variant='rounded' height='160px'>
+          <ArticleBanner
+            banner={banner}
+            dispatchSelectedProduct={setSelectedProduct}
+            dispatchDetailProduct={setIsDetailProduct}
+          />
+        </SkeletonWrap>
       ))}
 
       <DetailProduct
