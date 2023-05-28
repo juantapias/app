@@ -116,7 +116,7 @@ export default function DetailProduct ({
                 <p className='font-semibold text-2xl text-center'>
                   {product?.price}$
                 </p>
-                {inRestaurant && (
+                {!inRestaurant && (
                   <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>
                     <div className='w-1/2'>
                       <InputNumber defaultValue={1} min={1} />

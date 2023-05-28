@@ -34,7 +34,7 @@ const reducer = (state: AppState, action: Action) => {
     case 'SET_IS_SERVICES':
       return { ...state, isServices: action.payload }
     case 'SET_IN_RESTAURANT':
-      return { ...state, isServices: action.payload }
+      return { ...state, inRestaurant: action.payload }
   }
 }
 
@@ -50,7 +50,7 @@ const useAppState = () => {
 
   const setInRestaurant = (inRestaurant: boolean) => {
     dispatch({
-      type: 'SET_IS_SERVICES',
+      type: 'SET_IN_RESTAURANT',
       payload: inRestaurant
     })
   }

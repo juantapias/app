@@ -5,6 +5,8 @@ import { AppStateProvider } from '../context/AppStateContext'
 import Nav from '../components/navigation/Nav'
 
 import './globals.css'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 export default function RootLayout ({
   children
@@ -15,10 +17,12 @@ export default function RootLayout ({
     <html lang='en'>
       <body>
         <AppStateProvider>
-          {children}
-          <footer>
-            <Nav />
-          </footer>
+          <Suspense fallback={<Loading />}>
+            {children}
+            <footer>
+              <Nav />
+            </footer>
+          </Suspense>
         </AppStateProvider>
       </body>
     </html>

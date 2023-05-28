@@ -19,9 +19,10 @@ export default function Page ({ searchParams }: Props) {
   const { setIsServices, setInRestaurant } = useAppStateContext()
 
   useEffect(() => {
-    if (searchParams.key === 'inrestaurant')
+    if (searchParams.key === 'inrestaurant') {
       setIsServices(true), setInRestaurant(true)
-  }, [])
+    }
+  }, [searchParams])
 
   return (
     <Fragment>

@@ -1,6 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import React from 'react'
+// import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 import { CgSpinner } from 'react-icons/cg'
@@ -17,6 +19,8 @@ type ReservationFormInputs = {
 }
 
 export default function ReservationForm () {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -25,6 +29,7 @@ export default function ReservationForm () {
 
   const handleForm = (data: ReservationFormInputs) => {
     console.log('🚀 ~ file: ReservationForm.tsx:32 ~ handleForm ~ data:', data)
+    router.push('/confirmation')
   }
 
   return (

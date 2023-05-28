@@ -1,16 +1,21 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { IProduct } from '@/utils/types'
+import { IProduct } from '../../utils/types'
 
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProductScroll from '../articles/ArticleProductScroll'
+import DetailProduct from './DetailProduct'
 
 type IProductScroll = {
   products: IProduct[]
 }
 
 export default function ProductScroll ({ products }: IProductScroll) {
+  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+  const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
     <section className='products'>
       <div className='container mx-auto px-4'>
@@ -31,7 +36,11 @@ export default function ProductScroll ({ products }: IProductScroll) {
                     height='32px'
                     width='76px'
                   >
-                    <ArticleProductScroll product={product} />
+                    <ArticleProductScroll
+                      product={product}
+                      dispatchSelectedProduct={setSelectedProduct}
+                      dispatchDetailProduct={setIsDetailProduct}
+                    />
                   </SkeletonWrap>
                 ))}
               </div>
@@ -39,6 +48,13 @@ export default function ProductScroll ({ products }: IProductScroll) {
           </div>
         </div>
       </div>
+
+      <DetailProduct
+        isDetailProduct={isDetailProduct}
+        product={selectedProduct}
+        dispatchSelectedProduct={setSelectedProduct}
+        dispatchDetailProduct={setIsDetailProduct}
+      />
     </section>
   )
 }
