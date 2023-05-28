@@ -1,31 +1,31 @@
 [
   {
-    "title": "Pizza Peperoni",
+    "name": "Pizza Peperoni",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Pizza Hawaina",
+    "name": "Pizza Hawaina",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Pizza beff",
+    "name": "Pizza beff",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Pizza Veggie",
+    "name": "Pizza Veggie",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Pizza Española",
+    "name": "Pizza Española",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   },
   {
-    "title": "Pizza Argentina",
+    "name": "Pizza Argentina",
     "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus? Labore, officiis rerum! Repudiandae reiciendis iusto quas laudantium, accusantium velit accusamus impedit quibusdam deserunt totam. Provident minus dolorem ea sapiente?",
     "price": "32.00"
   }

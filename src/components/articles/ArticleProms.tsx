@@ -1,5 +1,5 @@
-import { IProduct } from '@/utils/types'
 import React, { Dispatch, SetStateAction } from 'react'
+import { IProduct } from '../../utils/types'
 
 type IArticleProms = {
   product: IProduct
