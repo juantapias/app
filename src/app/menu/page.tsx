@@ -1,24 +1,26 @@
 'use client'
 
 import React, { Fragment, useEffect } from 'react'
-import { useParams, usePathname, useSearchParams } from 'next/navigation'
+
+import { useAppStateContext } from '../../context/AppStateContext'
 
 import Header from '../../components/shared/Header'
 import CategoriesScroll from '../../components/shared/CategoriesScroll'
-
 import Products from '../../components/shared/Products'
 
 import CategoriesData from '../../data/categories.json'
 import ProductsData from '../../data/products.json'
-import { useAppStateContext } from '@/context/AppStateContext'
 
-export default function Page () {
-  const router = usePathname()
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-  const { setIsServices } = useAppStateContext()
+export default function Page ({ searchParams }: Props) {
+  const { setIsServices, setInRestaurant } = useAppStateContext()
 
   useEffect(() => {
-    if (router.includes('menu')) setIsServices(true)
+    if (searchParams.key === 'inrestaurant')
+      setIsServices(true), setInRestaurant(true)
   }, [])
 
   return (

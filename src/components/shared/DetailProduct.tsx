@@ -8,13 +8,16 @@ import React, {
   useState
 } from 'react'
 
-import { classNames } from '@/helpers'
-import { IProduct } from '@/utils/types'
+import InputNumber from '../forms/InputNumber'
+
+import { useAppStateContext } from '../../context/AppStateContext'
+
+import { classNames } from '../../helpers'
+import { IProduct } from '../../utils/types'
 
 import { MdClose } from 'react-icons/md'
 
-import Test from '@/assets/images/test.jpg'
-import InputNumber from '../forms/InputNumber'
+import Test from '../../assets/images/test.jpg'
 
 type IDetailProduct = {
   isDetailProduct: boolean
@@ -29,6 +32,7 @@ export default function DetailProduct ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IDetailProduct) {
+  const { inRestaurant } = useAppStateContext()
   const ref = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState<boolean>(false)
 
@@ -112,17 +116,18 @@ export default function DetailProduct ({
                 <p className='font-semibold text-2xl text-center'>
                   {product?.price}$
                 </p>
-
-                <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>
-                  <div className='w-1/2'>
-                    <InputNumber defaultValue={1} min={1} />
+                {inRestaurant && (
+                  <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>
+                    <div className='w-1/2'>
+                      <InputNumber defaultValue={1} min={1} />
+                    </div>
+                    <div className='w-1/2'>
+                      <button className='btn-full justify-around bg-red-200 mx-auto'>
+                        <span>Agregar</span> <span>{product?.price}</span>
+                      </button>
+                    </div>
                   </div>
-                  <div className='w-1/2'>
-                    <button className='btn-full justify-around bg-red-200 mx-auto'>
-                      <span>Agregar</span> <span>{product?.price}</span>
-                    </button>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
