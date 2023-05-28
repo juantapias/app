@@ -41,7 +41,7 @@ export default function ArticleProduct ({
       <div className='w-1/2 space-y-2'>
         <div className='flex items-center space-x-2'>
           <h1 className='font-semibold uppercase leading-none -mb-1'>
-            {product.title}
+            {product.name}
           </h1>
           <RiFireFill size={18} />
         </div>
@@ -51,7 +51,7 @@ export default function ArticleProduct ({
             50
           )}...`}</p>
         </div>
-        <p className='text-xl font-semibold'>{product.price}</p>
+        <p className='text-xl font-semibold'>{product.price}$</p>
       </div>
     </article>
   )

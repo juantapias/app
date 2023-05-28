@@ -1,12 +1,16 @@
 'use client'
 
+import { Suspense } from 'react'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppStateProvider } from '../context/AppStateContext'
 
 import Nav from '../components/navigation/Nav'
 
 import './globals.css'
-import { Suspense } from 'react'
 import Loading from './loading'
+
+const queryClient = new QueryClient()
 
 export default function RootLayout ({
   children
@@ -16,6 +20,7 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <body>
+      <QueryClientProvider client={queryClient}>
         <AppStateProvider>
           <Suspense fallback={<Loading />}>
             {children}
@@ -24,6 +29,7 @@ export default function RootLayout ({
             </footer>
           </Suspense>
         </AppStateProvider>
+        </QueryClientProvider>
       </body>
     </html>
   )
