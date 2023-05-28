@@ -38,7 +38,7 @@ export default function ArticleProductScroll ({
         />
       </figure>
       <div className='flex flex-col'>
-        <h3 className='font-semibold text-md'>{product.title}</h3>
+        <h3 className='font-semibold text-md'>{product.name}</h3>
         <span className='text-red-500 text-lg'>{product.price}</span>
       </div>
       {!inRestaurant && (
