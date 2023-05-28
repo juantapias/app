@@ -19,6 +19,7 @@ export default function ArticleProduct ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProduct) {
+  
   const handleSelectedProduct = () => {
     dispatchSelectedProduct(product)
     dispatchDetailProduct(true)

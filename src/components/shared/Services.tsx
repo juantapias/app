@@ -49,7 +49,7 @@ export default function Services () {
                   {servicesItem.map((service, key) => (
                     <button
                       key={key}
-                      className='border border-gray-400 text-gray-500 rounded-lg h-20 w-20 flex items-center justify-center'
+                      className='border border-gray-400 text-gray-500 rounded-full h-20 w-20 flex items-center justify-center'
                       data-services={service.target}
                       onClick={e => handleSetServices(e)}
                     >
