@@ -4,14 +4,14 @@ import React, { Dispatch, SetStateAction } from 'react'
 import Image from 'next/legacy/image'
 
 import { useAppStateContext } from '../../context/AppStateContext'
-import { IProduct } from '../../utils/types'
+import { Product } from '../../utils/types'
 import { classNames } from '../../helpers'
 
 import Test from '../../assets/images/test.jpg'
 
 type IArticleProductScroll = {
-  product: IProduct
-  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
+  product: Product
+  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
@@ -19,7 +19,7 @@ export default function ArticleProductScroll ({
   product,
   dispatchSelectedProduct,
   dispatchDetailProduct
-,}: IArticleProductScroll) {
+}: IArticleProductScroll) {
   const { inRestaurant } = useAppStateContext()
 
   const handleSelectedProduct = () => {
@@ -28,7 +28,13 @@ export default function ArticleProductScroll ({
   }
 
   return (
-    <article className={classNames(inRestaurant ? 'h-52' : 'h-60',' w-48 bg-white p-4 rounded-xl flex flex-col items-start justify-between')} onClick={handleSelectedProduct}>
+    <article
+      className={classNames(
+        inRestaurant ? 'h-52' : 'h-60',
+        ' w-48 bg-white p-4 rounded-xl flex flex-col items-start justify-between'
+      )}
+      onClick={handleSelectedProduct}
+    >
       <figure className='w-full'>
         <Image
           src={Test}
@@ -38,8 +44,12 @@ export default function ArticleProductScroll ({
         />
       </figure>
       <div className='flex flex-col'>
-        <h3 className='font-semibold text-md'>{product.name}</h3>
-        <span className='text-red-500 text-lg'>{product.price}</span>
+        <h3 className='font-semibold text-md'>
+          {product.name.length > 18
+            ? `${product.name.substring(0, 16)}...`
+            : product.name}
+        </h3>
+        <span className='text-red-500 text-lg'>${product.price}</span>
       </div>
       {!inRestaurant && (
         <button className='btn-full justify-around bg-red-200 mx-auto'>

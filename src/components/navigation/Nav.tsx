@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -11,7 +11,8 @@ import {
   MdHome,
   MdRestaurantMenu,
   MdLocalOffer,
-  MdRoomService
+  MdRoomService,
+  MdSearch
 } from 'react-icons/md'
 import { useAppStateContext } from '@/context/AppStateContext'
 
@@ -25,6 +26,11 @@ const menuItem = [
     label: 'Menu',
     icon: <MdRestaurantMenu size={30} />,
     link: '/menu'
+  },
+  {
+    label: 'Buscar',
+    icon: <MdSearch size={30} />,
+    link: '/search'
   },
   {
     label: 'Promociones',
@@ -48,7 +54,7 @@ export default function Nav () {
       {isServices ? (
         <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full z-10'>
           <div className='grid grid-rows-1'>
-            <div className='grid grid-cols-4'>
+            <div className='grid grid-cols-5'>
               {menuItem.map((menu, key) => (
                 <Link
                   key={key}

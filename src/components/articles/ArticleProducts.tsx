@@ -6,11 +6,11 @@ import Image from 'next/legacy/image'
 import { RiFireFill } from 'react-icons/ri'
 
 import Test from '@/assets/images/test.jpg'
-import { IProduct } from '@/utils/types'
+import { Product } from '@/utils/types'
 
 type IArticleProduct = {
-  product: IProduct
-  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
+  product: Product
+  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
@@ -51,7 +51,7 @@ export default function ArticleProduct ({
             50
           )}...`}</p>
         </div>
-        <p className='text-xl font-semibold'>{product.price}$</p>
+        <p className='text-xl font-semibold'>${product.price}</p>
       </div>
     </article>
   )

@@ -6,15 +6,15 @@ import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProducts from '../articles/ArticleProducts'
 import DetailProduct from './DetailProduct'
 
-import { IProduct } from '@/utils/types'
+import { Product } from '@/utils/types'
 
 type Products = {
   loading: boolean
-  products: IProduct[]
+  products: Product[]
 }
 
 export default function Products ({ loading, products }: Products) {
-  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+  const [selectedProduct, setSelectedProduct] = useState<Product>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
     <section className='products'>
