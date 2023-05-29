@@ -4,16 +4,16 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import DetailProduct from './DetailProduct'
 
-import { IProduct } from '../../utils/types'
+import { IBanners } from '../../utils/types'
 import ArticleBanner from '../articles/ArticleBanner'
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 
 type IBanner = {
-  banners: IProduct[]
+  banners: IBanners[]
 }
 
 export default function Banner ({ banners }: IBanner) {
-  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+  const [selectedProduct, setSelectedProduct] = useState<IBanners>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
 
   return (

@@ -3,18 +3,19 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { IProduct } from '../../utils/types'
+import { Product } from '../../utils/types'
 
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProductScroll from '../articles/ArticleProductScroll'
 import DetailProduct from './DetailProduct'
 
 type IProductScroll = {
-  products: IProduct[]
+  loading: boolean
+  products: Product[]
 }
 
-export default function ProductScroll ({ products }: IProductScroll) {
-  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+export default function ProductScroll ({ loading, products }: IProductScroll) {
+  const [selectedProduct, setSelectedProduct] = useState<Product>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
     <section className='products'>
@@ -31,7 +32,7 @@ export default function ProductScroll ({ products }: IProductScroll) {
                 {products.map((product, key) => (
                   <SkeletonWrap
                     key={key}
-                    loading={false}
+                    loading={loading}
                     variant='rounded'
                     height='32px'
                     width='76px'

@@ -4,7 +4,8 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { MdChevronLeft, MdSearch } from 'react-icons/md'
+import { RiShoppingBasketLine } from 'react-icons/ri'
+import { MdChevronLeft, MdOutlineShoppingCart } from 'react-icons/md'
 
 type IHeader = {
   goBack?: boolean
@@ -31,8 +32,8 @@ export default function Header ({ goBack, title, search }: IHeader) {
               <h1 className='text-center'>{title}</h1>
             </div>
             {search && (
-              <Link href="/search" className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'>
-                <MdSearch size={25} />
+              <Link href="/cart" className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'>
+                <RiShoppingBasketLine size={20} />
               </Link>
             )}
           </div>

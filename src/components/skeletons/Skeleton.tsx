@@ -1,4 +1,4 @@
-import { classNames } from '@/helpers'
+import { classNames } from '../../helpers'
 
 type ISkeleton = {
   margin?: string | undefined

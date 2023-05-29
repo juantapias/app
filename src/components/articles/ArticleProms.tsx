@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { IProduct } from '../../utils/types'
+import { IBanners } from '../../utils/types'
 
 type IArticleProms = {
-  product: IProduct
-  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
+  product: IBanners
+  dispatchSelectedProduct: Dispatch<SetStateAction<IBanners | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 

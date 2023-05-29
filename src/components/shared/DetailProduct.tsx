@@ -13,7 +13,7 @@ import InputNumber from '../forms/InputNumber'
 import { useAppStateContext } from '../../context/AppStateContext'
 
 import { classNames } from '../../helpers'
-import { IProduct } from '../../utils/types'
+import { Product } from '../../utils/types'
 
 import { MdClose } from 'react-icons/md'
 
@@ -21,8 +21,8 @@ import Test from '../../assets/images/test.jpg'
 
 type IDetailProduct = {
   isDetailProduct: boolean
-  product: IProduct | undefined
-  dispatchSelectedProduct: Dispatch<SetStateAction<IProduct | undefined>>
+  product: Product | undefined
+  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
@@ -114,7 +114,7 @@ export default function DetailProduct ({
                 />
 
                 <p className='font-semibold text-2xl text-center'>
-                  {product?.price}$
+                  ${product?.price}
                 </p>
                 {!inRestaurant && (
                   <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>

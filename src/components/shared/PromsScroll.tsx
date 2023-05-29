@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { IProduct } from '../../utils/types'
+import { IBanners } from '../../utils/types'
 
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProms from '../articles/ArticleProms'
@@ -17,7 +17,7 @@ type IPromsScroll = {
 }
 
 export default function PromsScroll ({ viewMore, title }: IPromsScroll) {
-  const [selectedProduct, setSelectedProduct] = useState<IProduct>()
+  const [selectedProduct, setSelectedProduct] = useState<IBanners>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
 
   return (

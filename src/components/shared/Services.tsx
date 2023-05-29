@@ -7,10 +7,10 @@ import React, {
   SetStateAction,
   useState
 } from 'react'
-import { useAppStateContext } from '@/context/AppStateContext'
 
-import { RiEBike2Line } from 'react-icons/ri'
-import { IoStorefrontOutline } from 'react-icons/io5'
+import { useAppStateContext } from '../../context/AppStateContext'
+
+import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
 
 export default function Services () {
   const [services, setServices] = useState<string>('')
@@ -19,12 +19,12 @@ export default function Services () {
     {
       title: 'Domicilios',
       target: 'delivery',
-      icon: <RiEBike2Line size={30} />
+      icon: <MdOutlineDeliveryDining size={30} />
     },
     {
       title: 'Retirar en tienda',
       target: 'store',
-      icon: <IoStorefrontOutline size={30} />
+      icon: <MdOutlineStorefront size={30} />
     }
   ]
 

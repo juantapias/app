@@ -1,6 +1,10 @@
 import { gql } from 'graphql-request'
+import { useQuery } from '@tanstack/react-query'
 
-import { hygraph } from '@/services/Api'
+import { hygraph } from '../services/Api'
+
+import { useAppStateContext } from '../context/AppStateContext'
+import { IProducts, Product } from '../utils/types'
 
 const listProducts = gql`
   {
@@ -15,8 +19,23 @@ const listProducts = gql`
     }
   }
 `
-export const useProducts = async () => {
-  const { products }: any = await hygraph.request(listProducts)
+export const useProducts = () => {
+  const { products, setProducts } = useAppStateContext()
+  const productQuery = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      if (!products.length) {
+        const res = (await hygraph.request(listProducts)) as IProducts
+        return res.products
+      } else {
+        return products
+      }
+    },
+    cacheTime: 60 * 60 * 1000,
+    onSuccess: (data) => {
+      setProducts(data as unknown as Product[])
+    },
+  })
 
-  return products
+  return productQuery
 }
