@@ -66,7 +66,7 @@ export default function Nav () {
                   )}
                 >
                   {menu.icon}
-                  {menu.label}
+                  {pathname === menu.link && menu.label}
                 </Link>
               ))}
             </div>
