@@ -1,11 +1,14 @@
 'use client'
 
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
-// import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import es from 'date-fns/locale/es'
 
 import { CgSpinner } from 'react-icons/cg'
+
+registerLocale('es', es)
 
 type ReservationFormInputs = {
   name: string
@@ -14,6 +17,8 @@ type ReservationFormInputs = {
   phone: string
   mail: string
   event: string
+  timeEvent: string
+  dateEvent: any
   people: string
   request: string
 }
@@ -21,15 +26,22 @@ type ReservationFormInputs = {
 export default function ReservationForm () {
   const router = useRouter()
 
+  const [startDate, setStartDate] = useState<any>()
+
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting, isSubmitSuccessful }
   } = useForm<ReservationFormInputs>()
 
   const handleForm = (data: ReservationFormInputs) => {
     console.log('🚀 ~ file: ReservationForm.tsx:32 ~ handleForm ~ data:', data)
-    router.push('/confirmation')
+    // router.push('/confirmation')
+  }
+
+  const onChangeDate = (date: any) => {
+    setStartDate(date)
   }
 
   return (
@@ -120,9 +132,30 @@ export default function ReservationForm () {
       </div>
 
       <div className='form-group flex flex-col'>
-        <label htmlFor='time'>Hora</label>
+        <label htmlFor='dateEvent'>Día:</label>
+        <Controller
+          control={control}
+          name='dateEvent'
+          // rules={{ required: true }}
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              className='h-10 outline-none rounded-lg indent-2 bg-white w-full'
+              selected={field.value}
+              onChange={date => field.onChange(date)}
+              locale={es}
+              placeholderText='Selecciona la fecha'
+              dateFormat='dd/MM/yyyy'
+              isClearable
+            />
+          )}
+        />
+      </div>
+
+      <div className='form-group flex flex-col'>
+        <label htmlFor='timeEvent'>Hora</label>
         <select
-          {...register('event', { required: true })}
+          {...register('timeEvent', { required: true })}
           id='event'
           defaultValue=''
           className='h-10 outline-none rounded-lg indent-2 bg-white'
@@ -171,7 +204,7 @@ export default function ReservationForm () {
           {...register('request')}
           id='request'
           className='h-20 outline-none rounded-lg indent-2'
-        />
+        ></textarea>
       </div>
 
       <div>
