@@ -120,6 +120,31 @@ export default function ReservationForm () {
       </div>
 
       <div className='form-group flex flex-col'>
+        <label htmlFor='time'>Hora</label>
+        <select
+          {...register('event', { required: true })}
+          id='event'
+          defaultValue=''
+          className='h-10 outline-none rounded-lg indent-2 bg-white'
+        >
+          <option value='' disabled>
+            Selecciona
+          </option>
+          <option value='12pm'>12pm</option>
+          <option value='1pm'>1pm</option>
+          <option value='2pm'>2pm</option>
+          <option value='3pm'>3pm</option>
+          <option value='4pm'>4pm</option>
+          <option value='5pm'>5pm</option>
+          <option value='6pm'>6pm</option>
+          <option value='7pm'>7pm</option>
+          <option value='8pm'>8pm</option>
+          <option value='9pm'>9pm</option>
+          <option value='10pm'>10pm</option>
+        </select>
+      </div>
+
+      <div className='form-group flex flex-col'>
         <label htmlFor='people'>Nr. de comensales</label>
         <select
           {...register('people', { required: true })}
