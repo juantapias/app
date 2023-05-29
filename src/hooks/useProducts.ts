@@ -31,11 +31,11 @@ export const useProducts = () => {
         return products
       }
     },
-    cacheTime: 60 * 60 * 1000,
-    onSuccess: (data) => {
-      setProducts(data as unknown as Product[])
-    },
-    suspense: true,
+    // cacheTime: 60 * 60 * 1000,
+    // onSuccess: (data) => {
+    //   setProducts(data as unknown as Product[])
+    // },
+    // suspense: true,
   })
 
   return productQuery
