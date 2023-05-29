@@ -4,7 +4,9 @@ import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { classNames } from '@/helpers'
+import { useAppStateContext } from '../../context/AppStateContext'
+
+import { classNames } from '../../helpers'
 import Services from '../shared/Services'
 
 import {
@@ -14,7 +16,6 @@ import {
   MdRoomService,
   MdSearch
 } from 'react-icons/md'
-import { useAppStateContext } from '@/context/AppStateContext'
 
 const menuItem = [
   {

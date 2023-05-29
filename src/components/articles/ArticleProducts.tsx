@@ -3,10 +3,11 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import Image from 'next/legacy/image'
 
+import { Product } from '../../utils/types'
+
 import { RiFireFill } from 'react-icons/ri'
 
-import Test from '@/assets/images/test.jpg'
-import { Product } from '@/utils/types'
+import Test from '../../assets/images/test.jpg'
 
 type IArticleProduct = {
   product: Product

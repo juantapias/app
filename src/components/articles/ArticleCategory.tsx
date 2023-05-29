@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ICategory } from '@/utils/types'
+import { ICategory } from '../../utils/types'
 
 type ArticleCategory = {
   category: ICategory

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Header from '../../components/shared/Header'
-import Confirmation from '@/components/shared/Confirmation'
+import Confirmation from '../../components/shared/Confirmation'
 
 export default function page () {
   return (

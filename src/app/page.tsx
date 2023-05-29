@@ -2,6 +2,9 @@
 
 import { Fragment } from 'react'
 
+import { useAppStateContext } from '../context/AppStateContext'
+import { useProducts } from '../hooks'
+
 import Header from '../components/shared/Header'
 import Banner from '../components/shared/Banner'
 import PromsScroll from '../components/shared/PromsScroll'
@@ -9,9 +12,6 @@ import ProductScroll from '../components/shared/ProductScroll'
 import Social from '../components/shared/Social'
 
 import BannerData from '../data/banner.json'
-import ProductsData from '../data/products.json'
-import { useProducts } from '@/hooks'
-import { useAppStateContext } from '@/context/AppStateContext'
 
 export default function Page () {
   const { products } = useAppStateContext()

@@ -1,9 +1,10 @@
 import { gql } from 'graphql-request'
-
-import { hygraph } from '@/services/Api'
-import { useAppStateContext } from '@/context/AppStateContext'
-import { IProducts, Product } from '@/utils/types'
 import { useQuery } from '@tanstack/react-query'
+
+import { hygraph } from '../services/Api'
+
+import { useAppStateContext } from '../context/AppStateContext'
+import { IProducts, Product } from '../utils/types'
 
 const listProducts = gql`
   {

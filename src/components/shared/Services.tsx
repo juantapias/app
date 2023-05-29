@@ -7,7 +7,8 @@ import React, {
   SetStateAction,
   useState
 } from 'react'
-import { useAppStateContext } from '@/context/AppStateContext'
+
+import { useAppStateContext } from '../../context/AppStateContext'
 
 import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
 

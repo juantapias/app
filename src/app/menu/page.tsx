@@ -2,9 +2,8 @@
 
 import React, { Fragment, useEffect } from 'react'
 
-import { useProducts } from '@/hooks'
-
 import { useAppStateContext } from '../../context/AppStateContext'
+import { useProducts } from '../../hooks'
 
 import Header from '../../components/shared/Header'
 import CategoriesScroll from '../../components/shared/CategoriesScroll'

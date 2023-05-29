@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 
+import { Product } from '../../utils/types'
+
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProducts from '../articles/ArticleProducts'
 import DetailProduct from './DetailProduct'
-
-import { Product } from '@/utils/types'
 
 type Products = {
   loading: boolean
