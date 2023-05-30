@@ -14,7 +14,6 @@ export default function Page () {
   const productQuery = useProducts()
 
   const [queryFilter, setQueryFilter] = useState<string>('')
-  console.log('🚀 ~ file: page.tsx:17 ~ Page ~ queryFilter:', queryFilter)
 
   const searchFilterProducts =
     queryFilter === ''

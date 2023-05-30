@@ -10,12 +10,14 @@ import Banner from '../components/shared/Banner'
 import PromsScroll from '../components/shared/PromsScroll'
 import ProductScroll from '../components/shared/ProductScroll'
 import Social from '../components/shared/Social'
+import Author from '../components/shared/Author'
 
 import BannerData from '../data/banner.json'
 
 export default function Page () {
   const { products } = useAppStateContext()
   const productQuery = useProducts()
+
   return (
     <Fragment>
       <Header title='Inicio' search />
@@ -24,6 +26,7 @@ export default function Page () {
         <PromsScroll title='Promociones destacadas' viewMore />
         <ProductScroll loading={productQuery.isFetching} products={products} />
         <Social />
+        <Author />
       </main>
     </Fragment>
   )
