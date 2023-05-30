@@ -7,7 +7,7 @@ import PromsScroll from '../../components/shared/PromsScroll'
 export default function Page () {
   return (
     <Fragment>
-      <Header title='Promociones' search />
+      <Header title='Promociones' cartBtn />
       <main className='space-y-5'>
         <PromsScroll title='Feliz día Mamá' />
         <PromsScroll title='Para compartir' />

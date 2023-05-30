@@ -47,7 +47,7 @@ export default function ArticleProduct ({
           <RiFireFill size={18} />
         </div>
         <div className='max-h-12 transition-all duration-300 ease-in-out text-ellipsis overflow-hidden'>
-          <p className='text-xs'>{`${product.description.substring(
+          <p className='text-xs'>{`${product.description?.substring(
             0,
             50
           )}...`}</p>

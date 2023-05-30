@@ -9,13 +9,15 @@ type AppState = {
   isServices: boolean
   inRestaurant: boolean
   products: Product[]
+  cart: Product[]
 }
 
 const initialState: AppState = {
   isLoading: false,
   isServices: false,
   inRestaurant: false,
-  products: []
+  products: [],
+  cart: []
 }
 
 type Action =
@@ -35,6 +37,16 @@ type Action =
       type: 'SET_PRODUCTS'
       payload: Product[]
     }
+  | {
+      type: 'ADD_ITEM_CART'
+      payload: Product
+    }
+  | {
+      type: 'CLEAR_CART'
+    }
+
+const productInList = (cartList: any, productToAdd: any) =>
+  !!cartList.filter((prod: Product) => prod.id === productToAdd.id).length
 
 const reducer = (state: AppState, action: Action) => {
   switch (action.type) {
@@ -46,6 +58,21 @@ const reducer = (state: AppState, action: Action) => {
       return { ...state, inRestaurant: action.payload }
     case 'SET_PRODUCTS':
       return { ...state, products: action.payload }
+    case 'ADD_ITEM_CART':
+      if (productInList(state.cart, action.payload)) {
+        return {
+          ...state,
+          cart: state.cart.map(prod => {
+            if (prod.id === action.payload.id) {
+              return { ...prod }
+            }
+            return prod
+          })
+        }
+      }
+      return { ...state, cart: [...state.cart, action.payload] }
+    case 'CLEAR_CART':
+      return { ...state, cart: [] }
   }
 }
 
@@ -83,12 +110,25 @@ const useAppState = () => {
     [dispatch]
   )
 
+  const addItemCart = useCallback(
+    (product: Product) => {
+      dispatch({ type: 'ADD_ITEM_CART', payload: product })
+    },
+    [dispatch]
+  )
+
+  const clearCart = useCallback(() => {
+    dispatch({ type: 'CLEAR_CART' })
+  }, [dispatch])
+
   return {
     ...state,
     isLoading,
     setIsServices,
     setInRestaurant,
-    setProducts
+    setProducts,
+    addItemCart,
+    clearCart
   }
 }
 

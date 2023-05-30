@@ -19,8 +19,8 @@ export default function Page () {
     queryFilter === ''
       ? products
       : products.filter(product =>
-          product.name
-            .normalize('NFD')
+          product?.name
+            ?.normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
             .includes(queryFilter.toLowerCase().replace(/[\u0300-\u036f]/g, ''))
@@ -28,10 +28,13 @@ export default function Page () {
 
   return (
     <Fragment>
-      <Header title='Buscar' goBack />
+      <Header title='Buscar' cartBtn />
       <main className='space-y-5'>
         <SearchForm dispatchQueryFilter={setQueryFilter} />
-        <ResultFilter loading={productQuery.isFetching} products={searchFilterProducts} />
+        <ResultFilter
+          loading={productQuery.isFetching}
+          products={searchFilterProducts}
+        />
       </main>
     </Fragment>
   )

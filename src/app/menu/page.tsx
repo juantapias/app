@@ -16,7 +16,9 @@ type Props = {
 }
 
 export default function Page ({ searchParams }: Props) {
-  const { setIsServices, setInRestaurant, products } = useAppStateContext()
+  const { setIsServices, setInRestaurant, products } =
+    useAppStateContext()
+
   const productQuery = useProducts()
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Page ({ searchParams }: Props) {
 
   return (
     <Fragment>
-      <Header title='Menú' search />
+      <Header title='Menú' cartBtn />
       <main className='space-y-5'>
         <CategoriesScroll categories={CategoriesData} />
         <Products products={products} loading={productQuery.isFetching} />

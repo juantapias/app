@@ -20,7 +20,7 @@ export default function Page () {
 
   return (
     <Fragment>
-      <Header title='Inicio' search />
+      <Header title='Inicio' cartBtn />
       <main className='space-y-5'>
         <Banner banners={BannerData} />
         <PromsScroll title='Promociones destacadas' viewMore />
