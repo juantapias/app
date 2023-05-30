@@ -36,7 +36,7 @@ export default function ResultFilter ({ loading, products }: IResultFilter) {
                 </SkeletonWrap>
               ))
             ) : (
-              <EmptySearch />
+              <EmptySearch title='No se encuentran resultados relacionados a tu búsqueda' />
             )}
           </div>
         </div>

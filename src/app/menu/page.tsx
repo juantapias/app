@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment } from 'react'
 
 import { useAppStateContext } from '../../context/AppStateContext'
 import { useProducts } from '../../hooks'
@@ -11,21 +11,10 @@ import Products from '../../components/shared/Products'
 
 import CategoriesData from '../../data/categories.json'
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export default function Page ({ searchParams }: Props) {
-  const { setIsServices, setInRestaurant, products } =
-    useAppStateContext()
+export default function Page () {
+  const { setIsServices, setInRestaurant, products } = useAppStateContext()
 
   const productQuery = useProducts()
-
-  useEffect(() => {
-    if (searchParams.key === 'inrestaurant') {
-      setIsServices(true), setInRestaurant(true)
-    }
-  }, [searchParams])
 
   return (
     <Fragment>
