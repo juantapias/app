@@ -4,17 +4,20 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
+import { useAppStateContext } from '../../context/AppStateContext'
+
 import { RiShoppingBasketLine } from 'react-icons/ri'
-import { MdChevronLeft, MdOutlineShoppingCart } from 'react-icons/md'
+import { MdChevronLeft } from 'react-icons/md'
 
 type IHeader = {
   goBack?: boolean
   title: string
-  search?: boolean
+  cartBtn?: boolean
 }
 
-export default function Header ({ goBack, title, search }: IHeader) {
+export default function Header ({ goBack, title, cartBtn }: IHeader) {
   const router = useRouter()
+  const { cart } = useAppStateContext()
   return (
     <header className='py-2 mb-5'>
       <div className='container mx-auto px-4'>
@@ -31,8 +34,14 @@ export default function Header ({ goBack, title, search }: IHeader) {
             <div className={'flex items-center justify-center col-start-2'}>
               <h1 className='text-center'>{title}</h1>
             </div>
-            {search && (
-              <Link href="/cart" className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md'>
+            {cart && (
+              <Link
+                href='/cart'
+                className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md relative'
+              >
+                {cart.length > 0 && (
+                  <span className='absolute right-0 top-0 rounded-full bg-red-400 text-xs h-4 w-4 flex items-center justify-center'>{cart.length}</span>
+                )}
                 <RiShoppingBasketLine size={20} />
               </Link>
             )}

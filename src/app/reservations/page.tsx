@@ -6,7 +6,7 @@ import Reservation from '../../components/shared/Reservation'
 export default function Page () {
   return (
     <Fragment>
-      <Header title='Reservas' search />
+      <Header title='Reservas' cartBtn />
       <main>
         <Reservation />
       </main>

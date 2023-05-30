@@ -8,7 +8,7 @@ import CategoriesData from '../../../data/categories.json'
 export default function Page () {
   return (
     <Fragment>
-      <Header title='Categorías' goBack search />
+      <Header title='Categorías' goBack cartBtn />
       <main>
         <Categories categories={CategoriesData} />
       </main>

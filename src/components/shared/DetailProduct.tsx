@@ -2,6 +2,7 @@
 
 import React, {
   Dispatch,
+  Fragment,
   SetStateAction,
   useEffect,
   useRef,
@@ -32,9 +33,11 @@ export default function DetailProduct ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IDetailProduct) {
-  const { inRestaurant } = useAppStateContext()
+  const { inRestaurant, addItemCart } = useAppStateContext()
   const ref = useRef<HTMLDivElement>(null)
+
   const [isSticky, setIsSticky] = useState<boolean>(false)
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
   useEffect(() => {
     if (ref.current) {
@@ -58,6 +61,14 @@ export default function DetailProduct ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     height: '200px'
+  }
+
+  const handleAddToCart = async () => {
+    addItemCart({ ...product, quantity: 1 })
+    setIsSuccess(true)
+    setTimeout(() => {
+      setIsSuccess(false)
+    }, 2000)
   }
 
   return (
@@ -117,16 +128,33 @@ export default function DetailProduct ({
                   ${product?.price}
                 </p>
                 {!inRestaurant && (
-                  <div className='fixed flex items-center justify-between bg-white h-20 bottom-16 rounded-t-3xl w-full left-0 px-4 space-x-4'>
-                    <div className='w-1/2'>
-                      <InputNumber defaultValue={1} min={1} />
+                  <Fragment>
+                    {isSuccess && (
+                      <div className='fixed flex justify-center items-center rounded-t-3xl px-4 w-full left-0 bottom-36 bg-red-400 h-8'>
+                        <p className='text-center text-xs'>
+                          Se añadio el producto correctamente
+                        </p>
+                      </div>
+                    )}
+                    <div
+                      className={classNames(
+                        isSuccess ? 'rounded-none' : 'rounded-t-3xl',
+                        'fixed flex items-start justify-between bg-white h-24 bottom-12 pt-4  w-full left-0 px-4 space-x-4 transition-all duration-150 ease-in-out'
+                      )}
+                    >
+                      <div className='w-1/2'>
+                        <InputNumber defaultValue={1} min={1} />
+                      </div>
+                      <div className='w-1/2'>
+                        <button
+                          className='btn-full justify-around bg-red-200 mx-auto'
+                          onClick={handleAddToCart}
+                        >
+                          <span>Agregar</span> <span>{product?.price}</span>
+                        </button>
+                      </div>
                     </div>
-                    <div className='w-1/2'>
-                      <button className='btn-full justify-around bg-red-200 mx-auto'>
-                        <span>Agregar</span> <span>{product?.price}</span>
-                      </button>
-                    </div>
-                  </div>
+                  </Fragment>
                 )}
               </div>
             </div>
