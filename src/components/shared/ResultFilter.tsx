@@ -4,6 +4,7 @@ import { Product } from '../../utils/types'
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProduct from '../articles/ArticleProducts'
 import DetailProduct from './DetailProduct'
+import EmptySearch from './EmptySearch'
 
 type IResultFilter = {
   loading: boolean
@@ -19,20 +20,24 @@ export default function ResultFilter ({ loading, products }: IResultFilter) {
       <div className='container mx-auto px-4'>
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-1 gap-4'>
-            {products.map((product, key) => (
-              <SkeletonWrap
-                key={key}
-                loading={loading}
-                variant='rounded'
-                height='136px'
-              >
-                <ArticleProduct
-                  product={product}
-                  dispatchSelectedProduct={setSelectedProduct}
-                  dispatchDetailProduct={setIsDetailProduct}
-                />
-              </SkeletonWrap>
-            ))}
+            {products.length ? (
+              products.map((product, key) => (
+                <SkeletonWrap
+                  key={key}
+                  loading={loading}
+                  variant='rounded'
+                  height='136px'
+                >
+                  <ArticleProduct
+                    product={product}
+                    dispatchSelectedProduct={setSelectedProduct}
+                    dispatchDetailProduct={setIsDetailProduct}
+                  />
+                </SkeletonWrap>
+              ))
+            ) : (
+              <EmptySearch />
+            )}
           </div>
         </div>
       </div>
