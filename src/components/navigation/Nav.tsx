@@ -61,7 +61,9 @@ export default function Nav () {
                   key={key}
                   href={menu.link}
                   className={classNames(
-                    pathname === menu.link ? 'text-red-400 -translate-y-5' : 'text-black',
+                    pathname === menu.link
+                      ? 'text-red-400 -translate-y-5'
+                      : 'text-black',
                     'flex flex-col items-center justify-center bg-white rounded-full text-xs py-2 transition ease-in-out duration-200 hover:text-red-400'
                   )}
                 >

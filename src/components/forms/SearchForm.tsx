@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
-export default function SearchForm () {
+type ISearchForm = {
+  dispatchQueryFilter: Dispatch<SetStateAction<string>>
+}
+
+export default function SearchForm ({ dispatchQueryFilter }: ISearchForm) {
   return (
     <section className='search'>
       <div className='container mx-auto px-4'>
@@ -10,6 +14,9 @@ export default function SearchForm () {
               type='text'
               placeholder='Buscar...'
               className='h-10 rounded-lg indent-2 outline-none'
+              onChange={e => {
+                dispatchQueryFilter(e.currentTarget.value)
+              }}
             />
           </div>
         </div>
