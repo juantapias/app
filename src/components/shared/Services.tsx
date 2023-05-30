@@ -7,12 +7,16 @@ import React, {
   SetStateAction,
   useState
 } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { useAppStateContext } from '../../context/AppStateContext'
 
 import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
 
 export default function Services () {
+  const router = useRouter()
+  const { setIsServices, setInRestaurant } = useAppStateContext()
+
   const [services, setServices] = useState<string>('')
 
   const servicesItem = [
@@ -30,6 +34,11 @@ export default function Services () {
 
   const handleSetServices = (e: MouseEvent<HTMLButtonElement>) => {
     setServices(e.currentTarget.dataset.services || '')
+  }
+
+  const handleInRestaurant = () => {
+    setIsServices(true), setInRestaurant(true)
+    router.push('/menu')
   }
   return (
     <section className='services'>
@@ -56,6 +65,14 @@ export default function Services () {
                       {service.icon}
                     </button>
                   ))}
+                </div>
+                <div className='flex justify-center'>
+                  <button
+                    className='border border-gray-400 rounded-full text-gray-500 px-4 py-2'
+                    onClick={handleInRestaurant}
+                  >
+                    Estoy en el restaurant
+                  </button>
                 </div>
               </Fragment>
             )}

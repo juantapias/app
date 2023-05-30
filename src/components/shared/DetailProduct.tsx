@@ -150,7 +150,7 @@ export default function DetailProduct ({
                           className='btn-full justify-around bg-red-200 mx-auto'
                           onClick={handleAddToCart}
                         >
-                          <span>Agregar</span> <span>{product?.price}</span>
+                          <span>Agregar</span> <span>${product?.price}</span>
                         </button>
                       </div>
                     </div>

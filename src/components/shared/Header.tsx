@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -17,7 +17,7 @@ type IHeader = {
 
 export default function Header ({ goBack, title, cartBtn }: IHeader) {
   const router = useRouter()
-  const { cart } = useAppStateContext()
+  const { inRestaurant, cart } = useAppStateContext()
   return (
     <header className='py-2 mb-5'>
       <div className='container mx-auto px-4'>
@@ -34,16 +34,22 @@ export default function Header ({ goBack, title, cartBtn }: IHeader) {
             <div className={'flex items-center justify-center col-start-2'}>
               <h1 className='text-center'>{title}</h1>
             </div>
-            {cart && (
-              <Link
-                href='/cart'
-                className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md relative'
-              >
-                {cart.length > 0 && (
-                  <span className='absolute right-0 top-0 rounded-full bg-red-400 text-xs h-4 w-4 flex items-center justify-center'>{cart.length}</span>
+            {!inRestaurant && (
+              <Fragment>
+                {cart && (
+                  <Link
+                    href='/cart'
+                    className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md relative'
+                  >
+                    {cart.length > 0 && (
+                      <span className='absolute right-0 top-0 rounded-full bg-red-400 text-xs h-4 w-4 flex items-center justify-center'>
+                        {cart.length}
+                      </span>
+                    )}
+                    <RiShoppingBasketLine size={20} />
+                  </Link>
                 )}
-                <RiShoppingBasketLine size={20} />
-              </Link>
+              </Fragment>
             )}
           </div>
         </div>
