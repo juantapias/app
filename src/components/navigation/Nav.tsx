@@ -53,7 +53,7 @@ export default function Nav () {
   return (
     <Fragment>
       {isServices ? (
-        <nav className='fixed bottom-0 bg-white rounded-t-3xl p-4 w-full z-10'>
+        <nav className='fixed bottom-0 bg-white rounded-t-3xl px-4 w-full z-10'>
           <div className='grid grid-rows-1'>
             <div className='grid grid-cols-5'>
               {menuItem.map((menu, key) => (
@@ -61,8 +61,8 @@ export default function Nav () {
                   key={key}
                   href={menu.link}
                   className={classNames(
-                    pathname === menu.link ? 'text-red-400' : 'text-black',
-                    'flex flex-col items-center text-xs transition ease-in-out duration-200 hover:text-red-400'
+                    pathname === menu.link ? 'text-red-400 -translate-y-5' : 'text-black',
+                    'flex flex-col items-center justify-center bg-white rounded-full text-xs py-2 transition ease-in-out duration-200 hover:text-red-400'
                   )}
                 >
                   {menu.icon}
