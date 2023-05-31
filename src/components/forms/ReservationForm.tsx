@@ -6,11 +6,13 @@ import { Controller, useForm } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import es from 'date-fns/locale/es'
 
+import { whatsAppBooking } from '../../helpers'
+
 import { CgSpinner } from 'react-icons/cg'
 
 registerLocale('es', es)
 
-type ReservationFormInputs = {
+export type ReservationFormInputs = {
   name: string
   surname: string
   dni: string
@@ -36,8 +38,10 @@ export default function ReservationForm () {
   } = useForm<ReservationFormInputs>()
 
   const handleForm = (data: ReservationFormInputs) => {
-    console.log('🚀 ~ file: ReservationForm.tsx:32 ~ handleForm ~ data:', data)
-    // router.push('/confirmation')
+    
+    router.push('/confirmation')
+
+    whatsAppBooking(data)
   }
 
   const onChangeDate = (date: any) => {
