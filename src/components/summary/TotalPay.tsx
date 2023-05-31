@@ -4,7 +4,8 @@ import { useState } from 'react'
 
 import { Product } from '../../utils/types'
 import { totalPay } from '../../utils/calc'
-import { useAppStateContext } from '@/context/AppStateContext'
+import { useAppStateContext } from '../../context/AppStateContext'
+import { whatsAppOrder } from '../../helpers'
 
 type ITotalPay = {
   products: Product[]
@@ -15,18 +16,12 @@ export default function TotalPay ({ products }: ITotalPay) {
   const [order] = useState<string[]>([])
 
   const handleMakeOrder = () => {
-    const whatsapp: number = +573002964590
-
-    products.forEach(element => {
-      order?.push(`${element.name} x${element.quantity} -> $${element.price}`)
+    products.forEach(product => {
+      order?.push(`${product.name} x${product.quantity} -> $${product.price}`)
     })
 
-    const orderStructure = order.toString().replace(',', '\n')
-
-    const body = encodeURIComponent(orderStructure)
-
-    window.location.href = `https://wa.me/${whatsapp}?text=${body}`
-    clearCart
+    whatsAppOrder(order, products)
+    clearCart()
   }
 
   return (
