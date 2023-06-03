@@ -1,5 +1,11 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect } from 'react'
 import Link from 'next/link'
+
+import { useAppStateContext } from '@/context/AppStateContext'
+
+import { whatsAppBooking } from '@/helpers'
 
 type IConfirmation = {
   title: string
@@ -7,6 +13,14 @@ type IConfirmation = {
 }
 
 export default function Confirmation ({ title, description }: IConfirmation) {
+  const { booking } = useAppStateContext()
+
+  useEffect(() => {
+    if (booking) {
+      whatsAppBooking(booking)
+    }
+  }, [booking])
+
   return (
     <section className='confirmation'>
       <div className='container mx-auto px-4'>
@@ -17,7 +31,7 @@ export default function Confirmation ({ title, description }: IConfirmation) {
             </h1>
             <p className='text-gray-500 text-base text-center'>{description}</p>
             <Link href='/' className='btn-md mx-auto bg-red-300'>
-              Volver
+              Volver al inicio
             </Link>
           </div>
         </div>

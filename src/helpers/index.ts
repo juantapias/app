@@ -1,5 +1,4 @@
-import { Product } from '../utils/types'
-import { ReservationFormInputs } from '../components/forms/ReservationForm'
+import { IBooking, Product } from '../utils/types'
 
 import { totalPay } from '../utils/calc'
 import moment from 'moment'
@@ -22,16 +21,19 @@ export const whatsAppOrder = (order: string[], products: Product[]) => {
   let food: string = ''
   food += `%0A%0ATotal a pagar: $${totalPay(products)}`
 
-  window.location.href = `https://wa.me/${whatsapp}?text=${
-    head + encode + food
-  }`
+  window.open(
+    `https://wa.me/${whatsapp}?text=${head + encode + food}`,
+    '_blank'
+  )
 }
 
-export const whatsAppBooking = (booking: ReservationFormInputs) => {
+export const whatsAppBooking = (booking: IBooking) => {
   const whatsapp: number = +573002964590
 
   let head: string = ''
-  head += `¡Hola!, Quisiera hacer una reserva para el día ${moment(booking.dateEvent).format('DD/MM/YYYY')} a las ${booking.timeEvent} %0A`
+  head += `¡Hola!, Quisiera hacer una reserva para el día ${moment(
+    booking.dateEvent
+  ).format('DD/MM/YYYY')} a las ${booking.timeEvent} %0A`
   head += 'Mis datos: %0A'
 
   let body: string = ''

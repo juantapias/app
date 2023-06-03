@@ -23,3 +23,16 @@ export interface IBanners {
 export interface ICart {
   product: Product[]
 }
+
+export interface IBooking {
+  name: string
+  surname: string
+  dni: string
+  phone: string
+  mail: string
+  event: string
+  timeEvent: string
+  dateEvent: any
+  people: string
+  request: string
+}
