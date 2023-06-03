@@ -5,7 +5,7 @@ import Confirmation from '../../components/shared/Confirmation'
 export default function page () {
   return (
     <Fragment>
-      <Header title='Confirmación' goBack />
+      <Header title='Confirmación' />
       <main>
         <Confirmation
           title='Reserva exitosa'

@@ -2,12 +2,13 @@
 
 import { useCallback, useReducer } from 'react'
 import constate from 'constate'
-import { Product } from '../utils/types'
+import { IBooking, Product } from '../utils/types'
 
 type AppState = {
   isLoading: boolean
   isServices: boolean
   inRestaurant: boolean
+  booking?: IBooking
   products: Product[]
   cart: Product[]
 }
@@ -38,6 +39,10 @@ type Action =
       payload: Product[]
     }
   | {
+      type: 'SET_BOOKING'
+      payload: IBooking
+    }
+  | {
       type: 'ADD_ITEM_CART'
       payload: Product
     }
@@ -58,6 +63,8 @@ const reducer = (state: AppState, action: Action) => {
       return { ...state, inRestaurant: action.payload }
     case 'SET_PRODUCTS':
       return { ...state, products: action.payload }
+    case 'SET_BOOKING':
+      return { ...state, booking: action.payload }
     case 'ADD_ITEM_CART':
       if (productInList(state.cart, action.payload)) {
         return {
@@ -110,6 +117,16 @@ const useAppState = () => {
     [dispatch]
   )
 
+  const setBooking = useCallback(
+    (booking: IBooking) => {
+      dispatch({
+        type: 'SET_BOOKING',
+        payload: booking
+      })
+    },
+    [dispatch]
+  )
+
   const addItemCart = useCallback(
     (product: Product) => {
       dispatch({ type: 'ADD_ITEM_CART', payload: product })
@@ -127,6 +144,7 @@ const useAppState = () => {
     setIsServices,
     setInRestaurant,
     setProducts,
+    setBooking,
     addItemCart,
     clearCart
   }

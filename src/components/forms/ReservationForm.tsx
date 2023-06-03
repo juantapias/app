@@ -6,46 +6,27 @@ import { Controller, useForm } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import es from 'date-fns/locale/es'
 
-import { whatsAppBooking } from '../../helpers'
-
 import { CgSpinner } from 'react-icons/cg'
+import { IBooking } from '@/utils/types'
+import { useAppStateContext } from '@/context/AppStateContext'
 
 registerLocale('es', es)
 
-export type ReservationFormInputs = {
-  name: string
-  surname: string
-  dni: string
-  phone: string
-  mail: string
-  event: string
-  timeEvent: string
-  dateEvent: any
-  people: string
-  request: string
-}
-
 export default function ReservationForm () {
   const router = useRouter()
-
+  const { setBooking } = useAppStateContext()
   const [startDate, setStartDate] = useState<any>()
 
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting, isSubmitSuccessful }
-  } = useForm<ReservationFormInputs>()
+    formState: { errors, isSubmitting }
+  } = useForm<IBooking>()
 
-  const handleForm = (data: ReservationFormInputs) => {
-    
+  const handleForm = (data: IBooking) => {
+    setBooking(data)
     router.push('/confirmation')
-
-    whatsAppBooking(data)
-  }
-
-  const onChangeDate = (date: any) => {
-    setStartDate(date)
   }
 
   return (
@@ -140,7 +121,6 @@ export default function ReservationForm () {
         <Controller
           control={control}
           name='dateEvent'
-          // rules={{ required: true }}
           render={({ field }) => (
             <DatePicker
               {...field}
