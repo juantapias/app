@@ -1,10 +1,12 @@
 'use client'
 
 import React, {
+  ChangeEvent,
   Dispatch,
   Fragment,
   MouseEvent,
   SetStateAction,
+  useEffect,
   useState
 } from 'react'
 import { useRouter } from 'next/navigation'
@@ -12,6 +14,16 @@ import { useRouter } from 'next/navigation'
 import { useAppStateContext } from '../../context/AppStateContext'
 
 import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
+
+type ICache = {
+  city: string
+  address: string
+}
+
+type TouchValue = {
+  city: boolean
+  address: boolean
+}
 
 export default function Services () {
   const router = useRouter()
@@ -88,7 +100,70 @@ type IDelivery = {
 }
 
 const Delivery = ({ dispatchServices }: IDelivery) => {
+  const router = useRouter()
   const { setIsServices } = useAppStateContext()
+
+  const [deliveryAddress, setDeliveryAddress] = useState<ICache>({
+    city: '',
+    address: ''
+  })
+  const [error, setError] = useState<TouchValue>({
+    city: false,
+    address: false
+  })
+  console.log('🚀 ~ file: Services.tsx:114 ~ Delivery ~ error:', error)
+
+  useEffect(() => {
+    handleCache()
+  }, [deliveryAddress])
+
+  const handleCache = () => {
+    const currentDate = new Date()
+    const expirationTime = 24 * 60 * 60 * 1000
+    const expirationDate = new Date(currentDate.getTime() + expirationTime)
+
+    localStorage.setItem(
+      'deliveryAddress',
+      JSON.stringify({ data: deliveryAddress, expiration: expirationDate })
+    )
+
+    const storedData = localStorage.getItem('deliveryAddress')
+
+    if (storedData) {
+      const parsedData = JSON.parse(storedData)
+
+      const expirationDate = new Date(parsedData.expiracion)
+
+      const currentDate = new Date()
+
+      if (currentDate > expirationDate) {
+        localStorage.removeItem('datos')
+      }
+    }
+  }
+
+  const onChangeCity = (e: ChangeEvent<HTMLSelectElement>) => {
+    setDeliveryAddress({ ...deliveryAddress, city: e.currentTarget.value })
+  }
+
+  const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
+    setDeliveryAddress({ ...deliveryAddress, address: e.currentTarget.value })
+  }
+
+  const handleStore = () => {
+    if (deliveryAddress.city && deliveryAddress.address) {
+      setIsServices(true)
+      router.push('/')
+    }
+
+    if (!deliveryAddress.city) {
+      setError({ ...error, city: true })
+    }
+    if (!deliveryAddress.address.length) {
+      setError({ ...error, address: true })
+    }
+  }
+
   return (
     <div className='space-y-5'>
       <h2>Ingresar dirección</h2>
@@ -98,11 +173,15 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
           id='city'
           className='h-10 outline-none inset-2 border border-gray-400 rounded-full bg-white'
           defaultValue=''
+          onChange={e => onChangeCity(e)}
         >
           <option value=''>Selecciona</option>
-          <option value=''>Bogota</option>
-          <option value=''>Medellín</option>
+          <option value='Bogotá'>Bogotá</option>
+          <option value='Medellín'>Medellín</option>
         </select>
+        {error.city && (
+          <p className='text-xs text-red-300'>Campo obligatorio</p>
+        )}
       </div>
 
       <div className='flex flex-col'>
@@ -112,7 +191,11 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
           id='address'
           placeholder='Ingresa dirección'
           className='h-10 indent-2 border border-gray-400 rounded-full'
+          onChange={e => onChangeAddress(e)}
         />
+        {error.address && (
+          <p className='text-xs text-red-300'>Campo obligatorio</p>
+        )}
       </div>
 
       <div className='flex items-center justify-center space-x-4'>
@@ -124,12 +207,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
         >
           Volver
         </button>
-        <button
-          className='btn-md border border-gray-400'
-          onClick={() => {
-            setIsServices(true)
-          }}
-        >
+        <button className='btn-md border border-gray-400' onClick={handleStore}>
           Siguiente
         </button>
       </div>

@@ -1,15 +1,28 @@
+import Link from 'next/link'
 import React from 'react'
 
 type IEmptySearch = {
   title: string
+  description?: string
+  goHome?: boolean
 }
-export default function EmptySearch ({title}: IEmptySearch) {
+export default function EmptySearch ({
+  title,
+  description,
+  goHome
+}: IEmptySearch) {
   return (
     <section className='empty-search'>
       <div className='container mx-auto px-4'>
         <div className='grid grid-rows-1'>
           <div className='grid grid-cols-1 gap-4'>
-            <p className='text-gray-400 text-center'>{title}</p>
+            <h3 className='text-gray-400 font-semibold text-center'>{title}</h3>
+            {description && <p className='text-gray-400 text-center text-sm'>{description}</p>}
+            {goHome && (
+              <Link href='/' className='btn-md mx-auto bg-red-300'>
+                Volver al inicio
+              </Link>
+            )}
           </div>
         </div>
       </div>

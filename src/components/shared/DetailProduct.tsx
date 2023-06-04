@@ -37,6 +37,7 @@ export default function DetailProduct ({
   const ref = useRef<HTMLDivElement>(null)
 
   const [isSticky, setIsSticky] = useState<boolean>(false)
+  const [quantity, setQuantity] = useState<number>(1)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function DetailProduct ({
   }
 
   const handleAddToCart = async () => {
-    addItemCart({ ...product, quantity: 1 })
+    addItemCart({ ...product, quantity: quantity })
     setIsSuccess(true)
     setTimeout(() => {
       setIsSuccess(false)
@@ -143,7 +144,11 @@ export default function DetailProduct ({
                       )}
                     >
                       <div className='w-1/2'>
-                        <InputNumber defaultValue={1} min={1} />
+                        <InputNumber
+                          quantity={quantity}
+                          min={1}
+                          dispatchQuantity={setQuantity}
+                        />
                       </div>
                       <div className='w-1/2'>
                         <button

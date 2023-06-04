@@ -1,26 +1,39 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState
+} from 'react'
+
+import { useAppStateContext } from '@/context/AppStateContext'
+import { Product } from '@/utils/types'
 
 interface IInputNumber {
-  defaultValue?: number
+  quantity: number
   min?: number
   max?: number
+  dispatchQuantity: Dispatch<SetStateAction<number>>
 }
 
-export default function InputNumber ({ defaultValue, min, max }: IInputNumber) {
-  const [number, setNumber] = useState<number>(defaultValue ?? 1)
-
+export default function InputNumber ({
+  quantity,
+  min,
+  max,
+  dispatchQuantity
+}: IInputNumber) {
   const handleAsc = () => {
-    setNumber(number + 1)
+    dispatchQuantity(quantity + 1)
   }
 
   const handleDec = () => {
-    if (number > min!) {
-      setNumber(number - 1)
+    if (quantity > min!) {
+      dispatchQuantity(quantity - 1)
     }
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNumber(Number(e.currentTarget.value))
+    dispatchQuantity(Number(e.currentTarget.value))
   }
 
   return (
@@ -30,7 +43,7 @@ export default function InputNumber ({ defaultValue, min, max }: IInputNumber) {
       </button>
       <input
         type='text'
-        value={number}
+        value={quantity}
         className='outline-none border-0 w-1/2 border-transparent text-center'
         onChange={handleChange}
       />
