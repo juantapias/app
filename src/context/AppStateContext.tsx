@@ -47,6 +47,10 @@ type Action =
       payload: Product
     }
   | {
+      type: 'SET_QUANTITY'
+      payload: Product
+    }
+  | {
       type: 'CLEAR_CART'
     }
 
@@ -78,6 +82,16 @@ const reducer = (state: AppState, action: Action) => {
         }
       }
       return { ...state, cart: [...state.cart, action.payload] }
+    case 'SET_QUANTITY':
+      return {
+        ...state,
+        cart: state.cart.map(prod => {
+          if (prod.id === action.payload.id) {
+            return { ...prod, quantity: action.payload.quantity }
+          }
+          return prod
+        })
+      }
     case 'CLEAR_CART':
       return { ...state, cart: [] }
   }
@@ -134,6 +148,10 @@ const useAppState = () => {
     [dispatch]
   )
 
+  const setQuantity = useCallback((product: Product) => {
+    dispatch({ type: 'SET_QUANTITY', payload: product })
+  }, [dispatch])
+
   const clearCart = useCallback(() => {
     dispatch({ type: 'CLEAR_CART' })
   }, [dispatch])
@@ -146,6 +164,7 @@ const useAppState = () => {
     setProducts,
     setBooking,
     addItemCart,
+    setQuantity,
     clearCart
   }
 }

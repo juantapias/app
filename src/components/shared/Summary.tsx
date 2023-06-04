@@ -33,7 +33,7 @@ export default function Summary ({ products }: ISummary) {
                 <TotalPay products={products} />
               </div>
             ) : (
-              <EmptySearch title='No se han añadidos productos productos al carrito' />
+              <EmptySearch title='El carrito está vacío' description='Agrega a tu carrito los artículos que deseas pedir'  goHome />
             )}
           </div>
         </div>
