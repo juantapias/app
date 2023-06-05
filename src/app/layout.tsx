@@ -1,11 +1,12 @@
 'use client'
 
 import { Suspense } from 'react'
+import dynamic from 'next/dynamic';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppStateProvider } from '../context/AppStateContext'
 
-import Nav from '../components/navigation/Nav'
+const Nav = dynamic(() => import('../components/navigation/Nav'))
 import Loading from './loading'
 
 import './globals.css'
@@ -21,17 +22,18 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <body>
-      <QueryClientProvider client={queryClient}>
-        <AppStateProvider>
-          <Suspense fallback={<Loading />}>
-            {children}
-            <footer>
-              <Nav />
-            </footer>
-          </Suspense>
-        </AppStateProvider>
+        <QueryClientProvider client={queryClient}>
+          <AppStateProvider>
+            <Suspense fallback={<Loading />}>
+              {children}
+              <footer>
+                <Nav />
+              </footer>
+            </Suspense>
+          </AppStateProvider>
         </QueryClientProvider>
       </body>
     </html>
   )
 }
+
