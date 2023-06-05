@@ -140,6 +140,16 @@ body {
 * Animation
 * - - - - - - - - -  */
 
+@keyframes bounce {
+  from {
+    transform: translateY(-20px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}
+
 @keyframes skeleton {
   100% {
     transform: translateX(100%);
@@ -199,6 +209,47 @@ body {
 
 .not-scroll::-webkit-scrollbar {
   display: none;
+}
+
+/* - - - - - - - - -
+* Suspense
+* - - - - - - - - -  */
+
+.suspense {
+  align-items: center;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  margin: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.suspense .supense-circle {
+  animation: bounce 0.5s infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  background-color: var(--secondary);
+  border-radius: 999px;
+  height: 20px;
+  width: 20px;
+}
+
+.suspense .supense-circle.suspense-1 {
+  animation-delay: 0.1s;
+}
+
+.suspense .supense-circle.suspense-2 {
+  animation-delay: 0.3s;
+}
+
+.suspense .supense-circle.suspense-3 {
+  animation-delay: 0.5s;
 }
 
 /* - - - - - - - - -

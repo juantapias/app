@@ -111,7 +111,6 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
     city: false,
     address: false
   })
-  console.log('🚀 ~ file: Services.tsx:114 ~ Delivery ~ error:', error)
 
   useEffect(() => {
     handleCache()

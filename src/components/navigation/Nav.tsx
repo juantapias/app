@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -48,7 +48,20 @@ const menuItem = [
 export default function Nav () {
   const pathname = usePathname()
 
-  const { isServices } = useAppStateContext()
+  const { isServices, setIsServices } = useAppStateContext()
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Perform localStorage action
+      const cache = localStorage.getItem('deliveryAddress')
+      if (cache) {
+        const parsedData = JSON.parse(cache)
+        if (parsedData.data.address) {
+          setIsServices(true)
+        }
+      }
+    }
+  }, [])
 
   return (
     <Fragment>
@@ -79,4 +92,7 @@ export default function Nav () {
       )}
     </Fragment>
   )
+}
+function useCache (): { cacheAddress: any } {
+  throw new Error('Function not implemented.')
 }

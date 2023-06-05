@@ -21,8 +21,20 @@ export const whatsAppOrder = (order: string[], products: Product[]) => {
   let food: string = ''
   food += `%0A%0ATotal a pagar: $${totalPay(products)}`
 
+  let delivery: string = ''
+  const storedData = localStorage.getItem('deliveryAddress')
+
+  if (storedData) {
+    const parsedData = JSON.parse(storedData)
+    const address = parsedData.data.address
+    console.log('🚀 ~ file: index.ts:30 ~ whatsAppOrder ~ address:', encodeURIComponent( address))
+
+    delivery += '%0A%0ADomicilio: '
+    delivery += encodeURIComponent(address)
+  }
+
   window.open(
-    `https://wa.me/${whatsapp}?text=${head + encode + food}`,
+    `https://wa.me/${whatsapp}?text=${head + encode + food + delivery}`,
     '_blank'
   )
 }
