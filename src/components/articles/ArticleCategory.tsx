@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { ICategory } from '../../utils/types'
+import { Category } from '../../utils/types'
 
 type ArticleCategory = {
-  category: ICategory
+  category: Category
 }
 
 export default function ArticleCategory ({ category }: ArticleCategory) {
-  return <div className='flex items-center justify-center bg-white rounded-lg h-32'>{category.name}</div>
+  console.log('🚀 ~ file: ArticleCategory.tsx:10 ~ ArticleCategory ~ category:', category.poster.url)
+  const styleBackground = {
+    backgroundImage: `url("${category.poster.url}")`
+  }
+
+  return (
+    <div
+      style={styleBackground}
+      className='flex items-center justify-start bg-white rounded-lg h-32 p-5'
+    >
+      {category.name}
+    </div>
+  )
 }
