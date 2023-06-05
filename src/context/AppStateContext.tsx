@@ -2,7 +2,7 @@
 
 import { useCallback, useReducer } from 'react'
 import constate from 'constate'
-import { IBooking, Product } from '../utils/types'
+import { Category, IBooking, Product } from '../utils/types'
 
 type AppState = {
   isLoading: boolean
@@ -10,6 +10,7 @@ type AppState = {
   inRestaurant: boolean
   booking?: IBooking
   products: Product[]
+  categories: Category[]
   cart: Product[]
 }
 
@@ -18,6 +19,7 @@ const initialState: AppState = {
   isServices: false,
   inRestaurant: false,
   products: [],
+  categories: [],
   cart: []
 }
 
@@ -39,6 +41,10 @@ type Action =
       payload: Product[]
     }
   | {
+      type: 'SET_CATEGORIES'
+      payload: Category[]
+    }
+  | {
       type: 'SET_BOOKING'
       payload: IBooking
     }
@@ -48,6 +54,10 @@ type Action =
     }
   | {
       type: 'SET_QUANTITY'
+      payload: Product
+    }
+  | {
+      type: 'REMOVE_ITEM_CART'
       payload: Product
     }
   | {
@@ -67,6 +77,8 @@ const reducer = (state: AppState, action: Action) => {
       return { ...state, inRestaurant: action.payload }
     case 'SET_PRODUCTS':
       return { ...state, products: action.payload }
+    case 'SET_CATEGORIES':
+      return { ...state, categories: action.payload }
     case 'SET_BOOKING':
       return { ...state, booking: action.payload }
     case 'ADD_ITEM_CART':
@@ -91,6 +103,11 @@ const reducer = (state: AppState, action: Action) => {
           }
           return prod
         })
+      }
+    case 'REMOVE_ITEM_CART':
+      return {
+        ...state,
+        cart: state.cart.filter(prod => prod.id !== action.payload.id)
       }
     case 'CLEAR_CART':
       return { ...state, cart: [] }
@@ -131,6 +148,16 @@ const useAppState = () => {
     [dispatch]
   )
 
+  const setCategories = useCallback(
+    (categories: Category[]) => {
+      dispatch({
+        type: 'SET_CATEGORIES',
+        payload: categories
+      })
+    },
+    [dispatch]
+  )
+
   const setBooking = useCallback(
     (booking: IBooking) => {
       dispatch({
@@ -148,9 +175,19 @@ const useAppState = () => {
     [dispatch]
   )
 
-  const setQuantity = useCallback((product: Product) => {
-    dispatch({ type: 'SET_QUANTITY', payload: product })
-  }, [dispatch])
+  const setQuantity = useCallback(
+    (product: Product) => {
+      dispatch({ type: 'SET_QUANTITY', payload: product })
+    },
+    [dispatch]
+  )
+
+  const removeItemCart = useCallback(
+    (product: Product) => {
+      dispatch({ type: 'REMOVE_ITEM_CART', payload: product })
+    },
+    [dispatch]
+  )
 
   const clearCart = useCallback(() => {
     dispatch({ type: 'CLEAR_CART' })
@@ -162,9 +199,11 @@ const useAppState = () => {
     setIsServices,
     setInRestaurant,
     setProducts,
+    setCategories,
     setBooking,
     addItemCart,
     setQuantity,
+    removeItemCart,
     clearCart
   }
 }

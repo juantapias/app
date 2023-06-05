@@ -9,9 +9,20 @@ export interface Product {
   quantity?: number | undefined
 }
 
-export interface ICategory {
+export interface ICategories {
+  categories: Category[]
+}
+
+export interface Category {
   name: string
   tag: string
+  icon: IImage
+  poster: IImage
+}
+
+export interface IImage {
+  fileName: string
+  url: string
 }
 
 export interface IBanners {

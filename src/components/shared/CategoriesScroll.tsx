@@ -3,13 +3,14 @@ import Link from 'next/link'
 
 import SkeletonWrap from '../../components/skeletons/SkeletonWrap'
 
-import { ICategory } from '../../utils/types'
+import { Category } from '../../utils/types'
 
 type Categoies = {
-  categories: ICategory[]
+  loading: boolean
+  categories: Category[]
 }
 
-export default function CategoriesScroll ({ categories }: Categoies) {
+export default function CategoriesScroll ({ loading, categories }: Categoies) {
   return (
     <section className='categories'>
       <div className='container mx-auto px-4'>
@@ -25,14 +26,22 @@ export default function CategoriesScroll ({ categories }: Categoies) {
                 {categories.map((category, key) => (
                   <SkeletonWrap
                     key={key}
-                    loading={false}
+                    loading={loading}
                     variant='rounded'
                     height='32px'
                     width='76px'
                   >
                     <div className='flex flex-col items-center space-y-2'>
                       <button key={key} className='btn-category'>
-                        icon
+                        {category.icon ? (
+                          <img
+                            src={category.icon.url}
+                            alt={category.icon.fileName}
+                            className='max-w-full object-contain h-10 w-10'
+                          />
+                        ) : (
+                          'icon'
+                        )}
                       </button>
                       <span className='text-xs'>
                         {category.name.length > 9

@@ -1,16 +1,22 @@
+'use client'
+
 import React, { Fragment } from 'react'
+
+import { useAppStateContext } from '@/context/AppStateContext'
+import { useCategories } from '@/hooks'
 
 import Header from '../../../components/shared/Header'
 import Categories from '../../../components/shared/Categories'
 
-import CategoriesData from '../../../data/categories.json'
-
 export default function Page () {
+  const { categories } = useAppStateContext()
+
+  const CategoryQuery = useCategories()
   return (
     <Fragment>
       <Header title='Categorías' goBack cartBtn />
       <main>
-        <Categories categories={CategoriesData} />
+        <Categories categories={categories} loading={CategoryQuery.isFetching} />
       </main>
     </Fragment>
   )

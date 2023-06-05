@@ -21,6 +21,7 @@ const listProducts = gql`
 `
 export const useProducts = () => {
   const { products, setProducts } = useAppStateContext()
+  
   const productQuery = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
