@@ -7,8 +7,6 @@ import { useAppStateContext } from '../../context/AppStateContext'
 import { Product } from '../../utils/types'
 import { classNames } from '../../helpers'
 
-import Test from '../../assets/images/test.jpg'
-
 type IArticleProductScroll = {
   product: Product
   dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
@@ -37,10 +35,12 @@ export default function ArticleProductScroll ({
     >
       <figure className='w-full'>
         <Image
-          src={Test}
-          alt='prueba'
+          src={product?.thumbnail?.url || ''}
+          alt={product.name}
           layout='responsive'
-          className='rounded-lg'
+          className='rounded-lg max-w-full'
+          height={65}
+          width={100}
         />
       </figure>
       <div className='flex flex-col'>

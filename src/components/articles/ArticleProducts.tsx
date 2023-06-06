@@ -11,7 +11,7 @@ import Test from '../../assets/images/test.jpg'
 
 type IArticleProduct = {
   product: Product
-  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
+  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
@@ -20,7 +20,6 @@ export default function ArticleProduct ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProduct) {
-  
   const handleSelectedProduct = () => {
     dispatchSelectedProduct(product)
     dispatchDetailProduct(true)
@@ -42,17 +41,25 @@ export default function ArticleProduct ({
       <div className='w-1/2 space-y-2'>
         <div className='flex items-center space-x-2'>
           <h1 className='font-semibold uppercase leading-none -mb-1'>
-            {product.name}
+            {product.name && product.name.length > 25
+              ? `${product.name?.substring(0, 25)}...`
+              : product.name}
           </h1>
-          <RiFireFill size={18} />
         </div>
         <div className='max-h-12 transition-all duration-300 ease-in-out text-ellipsis overflow-hidden'>
           <p className='text-xs'>{`${product.description?.substring(
             0,
-            50
+            40
           )}...`}</p>
         </div>
-        <p className='text-xl font-semibold'>${product.price}</p>
+        <div className='flex items-center justify-between'>
+          <p className='text-xl font-semibold leading-none'>${product.price}</p>
+          <div className='flex items-center space-x-2'>
+            <RiFireFill size={15} />
+            <RiFireFill size={15} />
+            <RiFireFill size={15} />
+          </div>
+        </div>
       </div>
     </article>
   )

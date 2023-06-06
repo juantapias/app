@@ -66,7 +66,7 @@ export default function Nav () {
   return (
     <Fragment>
       {isServices ? (
-        <nav className='fixed bottom-0 bg-white rounded-t-3xl px-4 w-full z-10'>
+        <nav className='fixed bottom-0 bg-white rounded-t-3xl px-4 w-full'>
           <div className='grid grid-rows-1'>
             <div className='grid grid-cols-5'>
               {menuItem.map((menu, key) => (
