@@ -1,19 +1,19 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { IBanners } from '../../utils/types'
+import { IBanners, Product } from '../../utils/types'
 
 type IArticleProms = {
-  product: IBanners
-  dispatchSelectedProduct: Dispatch<SetStateAction<IBanners | undefined>>
+  prom: Product
+  dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
 export default function ArticleProms ({
-  product,
+  prom,
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProms) {
   const handleSelectedProduct = () => {
-    dispatchSelectedProduct(product)
+    dispatchSelectedProduct(prom)
     dispatchDetailProduct(true)
   }
 
@@ -22,7 +22,7 @@ export default function ArticleProms ({
       className='h-32 w-64 rounded-lg flex items-center justify-center bg-white'
       onClick={handleSelectedProduct}
     >
-      {product.name}
+      {prom.name}
     </div>
   )
 }

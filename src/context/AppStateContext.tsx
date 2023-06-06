@@ -11,6 +11,8 @@ type AppState = {
   booking?: IBooking
   products: Product[]
   categories: Category[]
+  proms: Product[]
+  banner: Product[]
   cart: Product[]
 }
 
@@ -20,6 +22,8 @@ const initialState: AppState = {
   inRestaurant: false,
   products: [],
   categories: [],
+  proms: [],
+  banner: [],
   cart: []
 }
 
@@ -43,6 +47,14 @@ type Action =
   | {
       type: 'SET_CATEGORIES'
       payload: Category[]
+    }
+  | {
+      type: 'SET_PROMS'
+      payload: Product[]
+    }
+  | {
+      type: 'SET_BANNER'
+      payload: Product[]
     }
   | {
       type: 'SET_BOOKING'
@@ -79,6 +91,10 @@ const reducer = (state: AppState, action: Action) => {
       return { ...state, products: action.payload }
     case 'SET_CATEGORIES':
       return { ...state, categories: action.payload }
+    case 'SET_PROMS':
+      return { ...state, proms: action.payload }
+    case 'SET_BANNER':
+      return { ...state, banner: action.payload }
     case 'SET_BOOKING':
       return { ...state, booking: action.payload }
     case 'ADD_ITEM_CART':
@@ -158,6 +174,26 @@ const useAppState = () => {
     [dispatch]
   )
 
+  const setProms = useCallback(
+    (proms: Product[]) => {
+      dispatch({
+        type: 'SET_PROMS',
+        payload: proms
+      })
+    },
+    [dispatch]
+  )
+
+  const setBanner = useCallback(
+    (banner: Product[]) => {
+      dispatch({
+        type: 'SET_BANNER',
+        payload: banner
+      })
+    },
+    [dispatch]
+  )
+
   const setBooking = useCallback(
     (booking: IBooking) => {
       dispatch({
@@ -200,6 +236,8 @@ const useAppState = () => {
     setInRestaurant,
     setProducts,
     setCategories,
+    setProms,
+    setBanner,
     setBooking,
     addItemCart,
     setQuantity,

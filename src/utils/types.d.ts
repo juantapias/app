@@ -26,9 +26,20 @@ export interface IImage {
 }
 
 export interface IBanners {
+  banners: Banner[]
+}
+
+export interface Banner {
+  id?: string
   name?: string
   description?: string
   price?: string
+  thumbnail: IImage
+  quantity?: number | undefined
+}
+
+export interface IProms {
+  proms: Product[]
 }
 
 export interface ICart {

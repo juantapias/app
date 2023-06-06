@@ -406,3 +406,8 @@ body {
 .detail-products .header-detail {
   margin-top: -40px;
 }
+
+.detail-products .content-detail {
+  max-height: 84%;
+  overflow-y: scroll;
+}
