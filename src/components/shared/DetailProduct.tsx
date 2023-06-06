@@ -22,7 +22,7 @@ import Test from '../../assets/images/test.jpg'
 
 type IDetailProduct = {
   isDetailProduct: boolean
-  product: Product | undefined
+  product?: Product | undefined
   dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }

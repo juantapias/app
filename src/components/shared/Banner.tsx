@@ -4,22 +4,23 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import DetailProduct from './DetailProduct'
 
-import { IBanners } from '../../utils/types'
+import { Banner, Product } from '../../utils/types'
 import ArticleBanner from '../articles/ArticleBanner'
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 
 type IBanner = {
-  banners: IBanners[]
+  loading: boolean
+  banner: Product[]
 }
 
-export default function Banner ({ banners }: IBanner) {
-  const [selectedProduct, setSelectedProduct] = useState<IBanners>()
+export default function Banner ({ loading, banner }: IBanner) {
+  const [selectedProduct, setSelectedProduct] = useState<Product>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
 
   return (
     <section className='banner'>
-      {banners.map((banner, key) => (
-        <SkeletonWrap key={key} loading={false} variant='rounded' height='160px'>
+      {banner.map((banner, key) => (
+        <SkeletonWrap key={key} loading={loading} variant='rounded' height='160px'>
           <ArticleBanner
             banner={banner}
             dispatchSelectedProduct={setSelectedProduct}

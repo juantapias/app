@@ -3,21 +3,21 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { IBanners } from '../../utils/types'
+import { Product } from '@/utils/types'
 
 import SkeletonWrap from '../skeletons/SkeletonWrap'
 import ArticleProms from '../articles/ArticleProms'
 import DetailProduct from './DetailProduct'
 
-import productData from '../../data/proms.json'
-
 type IPromsScroll = {
-  viewMore?: boolean
   title?: string
+  viewMore?: boolean
+  loading: boolean
+  proms: Product[]
 }
 
-export default function PromsScroll ({ viewMore, title }: IPromsScroll) {
-  const [selectedProduct, setSelectedProduct] = useState<IBanners>()
+export default function PromsScroll ({ title, viewMore, loading, proms  }: IPromsScroll) {
+  const [selectedProduct, setSelectedProduct] = useState<Product>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
 
   return (
@@ -32,16 +32,16 @@ export default function PromsScroll ({ viewMore, title }: IPromsScroll) {
 
             <div className='inline-flex overflow-x-scroll not-scroll'>
               <div className='space-x-4 flex'>
-                {productData.map((product, key) => (
+                {proms.map((prom, key) => (
                   <SkeletonWrap
                     key={key}
-                    loading={false}
+                    loading={loading}
                     variant='rounded'
                     height='256px'
                     width='128px'
                   >
                     <ArticleProms
-                      product={product}
+                      prom={prom}
                       dispatchSelectedProduct={setSelectedProduct}
                       dispatchDetailProduct={setIsDetailProduct}
                     />
