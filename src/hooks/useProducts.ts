@@ -16,6 +16,10 @@ const listProducts = gql`
       price
       slug
       stage
+      thumbnail {
+        fileName
+        url
+      }
     }
   }
 `

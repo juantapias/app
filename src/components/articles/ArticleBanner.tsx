@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 
-import { Banner, Product} from '../../utils/types'
+import { Product } from '../../utils/types'
 
 type IArticleBanner = {
   banner: Product
@@ -17,9 +17,17 @@ export default function ArticleBanner ({
     dispatchSelectedProduct(banner)
     dispatchDetailProduct(true)
   }
+
+  const styleBackground = {
+    backgroundImage: `url("${banner.thumbnail?.url}")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%'
+  }
+
   return (
     <article
-      className='bg-white h-40 flex items-center justify-center rounded-lg'
+      style={styleBackground}
+      className='bg-white h-40 flex items-center justify-center'
       onClick={handleSelectedProduct}
     >
       <div>{banner.name}</div>

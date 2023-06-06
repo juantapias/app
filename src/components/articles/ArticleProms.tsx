@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { IBanners, Product } from '../../utils/types'
+import { Product } from '../../utils/types'
 
 type IArticleProms = {
   prom: Product
@@ -17,12 +17,17 @@ export default function ArticleProms ({
     dispatchDetailProduct(true)
   }
 
+  const styleBackground = {
+    backgroundImage: `url("${prom.thumbnail?.url}")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%'
+  }
+
   return (
     <div
+      style={styleBackground}
       className='h-32 w-64 rounded-lg flex items-center justify-center bg-white'
       onClick={handleSelectedProduct}
-    >
-      {prom.name}
-    </div>
+    ></div>
   )
 }

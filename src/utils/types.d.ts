@@ -7,6 +7,7 @@ export interface Product {
   description?: string
   price?: string
   quantity?: number | undefined
+  thumbnail?: IImage
 }
 
 export interface ICategories {

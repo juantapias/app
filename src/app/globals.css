@@ -399,15 +399,9 @@ body {
 
 .detail-products.active {
   overflow-y: scroll;
-  padding-bottom: 80px;
   transform: translateY(0px);
 }
 
 .detail-products .header-detail {
   margin-top: -40px;
-}
-
-.detail-products .content-detail {
-  max-height: 84%;
-  overflow-y: scroll;
 }
