@@ -8,6 +8,7 @@ export interface Product {
   price?: string
   quantity?: number | undefined
   thumbnail?: IImage
+  categories?: Category[]
 }
 
 export interface ICategories {
@@ -15,10 +16,11 @@ export interface ICategories {
 }
 
 export interface Category {
-  name: string
-  tag: string
-  icon: IImage
-  poster: IImage
+  name?: string
+  tag?: string
+  icon?: IImage
+  poster?: IImage
+  products: Product[]
 }
 
 export interface IImage {
