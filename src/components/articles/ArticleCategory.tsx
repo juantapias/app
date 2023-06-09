@@ -9,7 +9,7 @@ type ArticleCategory = {
 export default function ArticleCategory ({ category }: ArticleCategory) {
   
   const styleBackground = {
-    backgroundImage: `url("${category.poster.url}")`,
+    backgroundImage: `url("${category?.poster?.url}")`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
   }
