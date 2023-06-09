@@ -20,6 +20,10 @@ const listProducts = gql`
         fileName
         url
       }
+      categories {
+        id
+        name
+      }
     }
   }
 `

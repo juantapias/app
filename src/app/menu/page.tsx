@@ -1,20 +1,30 @@
 'use client'
 
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 
 import { useAppStateContext } from '../../context/AppStateContext'
-import { useCategories, useProducts } from '../../hooks'
+import { useCategories } from '../../hooks'
 
 import Header from '../../components/shared/Header'
+import SkeletonWrap from '@/components/skeletons/SkeletonWrap'
 import CategoriesScroll from '../../components/shared/CategoriesScroll'
-import Products from '../../components/shared/Products'
+import CardCategory from '@/components/articles/CardCategory'
+import CategoryGroup from '@/components/shared/CategoryGroup'
 
 export default function Page () {
-  const { setIsServices, setInRestaurant, products, categories } =
-    useAppStateContext()
+  const { categories } = useAppStateContext()
 
   const categoryQuery = useCategories()
-  const productQuery = useProducts()
+
+  const [filterCategory, setFilterCategory] = useState<string | undefined>('')
+
+  const filterProductByCategory = () => {
+    if (filterCategory?.length) {
+      return categories.filter(c => c.name === filterCategory)
+    } else {
+      return categories.filter(c => c)
+    }
+  }
 
   return (
     <Fragment>
@@ -23,8 +33,13 @@ export default function Page () {
         <CategoriesScroll
           categories={categories}
           loading={categoryQuery.isFetching}
+          filterCategory={filterCategory}
+          dispatchFilterCategory={setFilterCategory}
         />
-        <Products products={products} loading={productQuery.isFetching} />
+        <CategoryGroup
+          categories={filterProductByCategory()}
+          loading={categoryQuery.isFetching}
+        />
       </main>
     </Fragment>
   )

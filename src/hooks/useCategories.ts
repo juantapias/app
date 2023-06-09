@@ -19,6 +19,16 @@ const listCategories = gql`
         fileName
         url
       }
+      products {
+        name
+        price
+        description
+        stage
+        thumbnail {
+          fileName
+          url
+        }
+      }
     }
   }
 `

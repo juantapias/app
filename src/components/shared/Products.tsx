@@ -17,25 +17,23 @@ export default function Products ({ loading, products }: Products) {
   const [selectedProduct, setSelectedProduct] = useState<Product>()
   const [isDetailProduct, setIsDetailProduct] = useState<boolean>(false)
   return (
-    <section className='products'>
-      <div className='container mx-auto px-4'>
-        <div className='grid grid-rows-1'>
-          <div className='grid grid-cols-1 gap-4'>
-            {products?.map((product, key) => (
-              <SkeletonWrap
-                key={key}
-                loading={loading}
-                variant='rounded'
-                height='136px'
-              >
-                <ArticleProducts
-                  product={product}
-                  dispatchSelectedProduct={setSelectedProduct}
-                  dispatchDetailProduct={setIsDetailProduct}
-                />
-              </SkeletonWrap>
-            ))}
-          </div>
+    <div className='products'>
+      <div className='grid grid-rows-1'>
+        <div className='grid grid-cols-1 gap-4'>
+          {products?.map((product, key) => (
+            <SkeletonWrap
+              key={key}
+              loading={loading}
+              variant='rounded'
+              height='136px'
+            >
+              <ArticleProducts
+                product={product}
+                dispatchSelectedProduct={setSelectedProduct}
+                dispatchDetailProduct={setIsDetailProduct}
+              />
+            </SkeletonWrap>
+          ))}
         </div>
       </div>
 
@@ -45,6 +43,6 @@ export default function Products ({ loading, products }: Products) {
         dispatchSelectedProduct={setSelectedProduct}
         dispatchDetailProduct={setIsDetailProduct}
       />
-    </section>
+    </div>
   )
 }

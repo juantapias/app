@@ -156,6 +156,18 @@ body {
   }
 }
 
+@keyframes alert {
+  from {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 
 /* - - - - - - - - -
 * Class
@@ -209,6 +221,11 @@ body {
 
 .not-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.alert {
+  animation: alert 1s alternate;
+  z-index: -1;
 }
 
 /* - - - - - - - - -
@@ -404,4 +421,17 @@ body {
 
 .detail-products .header-detail {
   margin-top: -40px;
+}
+
+/* - - - - - - - - -
+* CategoryGroup
+* - - - - - - - - -  */
+
+.category-group .card-category {
+  border-bottom: 1px solid #cecece;
+  padding-bottom: 1rem;
+}
+
+.category-group .card-category:last-child {
+  border-bottom: none;
 }

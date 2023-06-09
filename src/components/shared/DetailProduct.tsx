@@ -67,7 +67,7 @@ export default function DetailProduct ({
     setIsSuccess(true)
     setTimeout(() => {
       setIsSuccess(false)
-    }, 2000)
+    }, 3000)
   }
 
   return (
@@ -128,50 +128,50 @@ export default function DetailProduct ({
                 </p>
               </div>
             </div>
-
-            {!inRestaurant && (
-              <div
-                className={classNames(
-                  product?.description && product?.description.length > 500
-                    ? 'sticky'
-                    : 'fixed',
-                  'add-product bottom-0 left-0 w-full'
-                )}
-              >
-                {isSuccess && (
-                  <div className='fixed flex justify-center items-center rounded-t-3xl px-4 w-full left-0 bottom-36 bg-red-400 h-8'>
-                    <p className='text-center text-xs'>
-                      Se añadio el producto correctamente
-                    </p>
-                  </div>
-                )}
-                <div
-                  className={classNames(
-                    isSuccess ? 'rounded-none' : 'rounded-t-3xl',
-                    'flex items-start justify-between bg-white py-4 px-4 space-x-4 transition-all duration-150 ease-in-out'
-                  )}
-                >
-                  <div className='w-1/2'>
-                    <InputNumber
-                      quantity={quantity}
-                      min={1}
-                      dispatchQuantity={setQuantity}
-                    />
-                  </div>
-                  <div className='w-1/2'>
-                    <button
-                      className='btn-full justify-around bg-red-200 mx-auto'
-                      onClick={handleAddToCart}
-                    >
-                      <span>Agregar</span> <span>${product?.price}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
+
+      {!inRestaurant && (
+        <div
+          className={classNames(
+            product?.description && product?.description.length > 500
+              ? 'sticky'
+              : 'fixed',
+            'add-product fixed bottom-0 left-0 w-full z-10'
+          )}
+        >
+          {isSuccess && (
+            <div className='alert fixed flex justify-center items-center rounded-t-3xl px-4 w-full left-0 bottom-[70px] bg-red-400 h-8'>
+              <p className='text-center text-xs'>
+                Se añadio el producto correctamente
+              </p>
+            </div>
+          )}
+          <div
+            className={classNames(
+              isSuccess ? 'rounded-none' : 'rounded-t-3xl',
+              'flex items-start justify-between bg-white py-4 px-4 space-x-4 transition-all duration-150 ease-in-out'
+            )}
+          >
+            <div className='w-1/2'>
+              <InputNumber
+                quantity={quantity}
+                min={1}
+                dispatchQuantity={setQuantity}
+              />
+            </div>
+            <div className='w-1/2'>
+              <button
+                className='btn-full justify-around bg-red-200 mx-auto'
+                onClick={handleAddToCart}
+              >
+                <span>Agregar</span> <span>${product?.price}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
