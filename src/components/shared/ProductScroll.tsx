@@ -34,8 +34,8 @@ export default function ProductScroll ({ loading, products }: IProductScroll) {
                     key={key}
                     loading={loading}
                     variant='rounded'
-                    height='32px'
-                    width='76px'
+                    height='240px'
+                    width='192px'
                   >
                     <ArticleProductScroll
                       product={product}

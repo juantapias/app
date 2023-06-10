@@ -16,13 +16,17 @@ import { useAppStateContext } from '../../context/AppStateContext'
 import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
 
 type ICache = {
-  city: string
-  address: string
+  city?: string
+  address?: string
+  store?: string
+  time?: string
 }
 
 type TouchValue = {
-  city: boolean
-  address: boolean
+  city?: boolean
+  address?: boolean
+  store?: boolean
+  time?: boolean
 }
 
 export default function Services () {
@@ -107,6 +111,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
     city: '',
     address: ''
   })
+
   const [error, setError] = useState<TouchValue>({
     city: false,
     address: false
@@ -123,7 +128,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
 
     localStorage.setItem(
       'deliveryAddress',
-      JSON.stringify({ data: deliveryAddress, expiration: expirationDate })
+      JSON.stringify({ delivery: deliveryAddress, expiration: expirationDate })
     )
 
     const storedData = localStorage.getItem('deliveryAddress')
@@ -136,7 +141,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
       const currentDate = new Date()
 
       if (currentDate > expirationDate) {
-        localStorage.removeItem('datos')
+        localStorage.removeItem('deliveryAddress')
       }
     }
   }
@@ -158,14 +163,16 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
     if (!deliveryAddress.city) {
       setError({ ...error, city: true })
     }
-    if (!deliveryAddress.address.length) {
+    if (!deliveryAddress?.address?.length) {
       setError({ ...error, address: true })
     }
   }
 
   return (
     <div className='space-y-5'>
-      <h2>Ingresar dirección</h2>
+      <h2 className='text-center font-semibold text-gray-500 uppercase'>
+        Ingresar dirección
+      </h2>
       <div className='flex flex-col'>
         <label htmlFor='city'>Ciudad</label>
         <select
@@ -219,20 +226,130 @@ type IStore = {
 }
 
 const Store = ({ dispatchServices }: IStore) => {
+  const router = useRouter()
   const { setIsServices } = useAppStateContext()
+
+  const [pickupStore, setPickupStore] = useState<ICache>({
+    store: '',
+    time: ''
+  })
+
+  const [error, setError] = useState<TouchValue>({
+    store: false,
+    time: false
+  })
+
+  useEffect(() => {
+    handleCache()
+  }, [pickupStore])
+
+  const handleCache = () => {
+    const currentDate = new Date()
+    const expirationTime = 4 * 60 * 60 * 1000
+    const expirationDate = new Date(currentDate.getTime() + expirationTime)
+
+    localStorage.setItem(
+      'pickupStore',
+      JSON.stringify({ store: pickupStore, expiration: expirationDate })
+    )
+
+    const storedData = localStorage.getItem('pickupStore')
+
+    if (storedData) {
+      const parsedData = JSON.parse(storedData)
+
+      const expirationDate = new Date(parsedData.expiracion)
+
+      const currentDate = new Date()
+
+      if (currentDate > expirationDate) {
+        localStorage.removeItem('pickupStore')
+      }
+    }
+  }
+
+  const onChangeStore = (e: ChangeEvent<HTMLSelectElement>) => {
+    setPickupStore({ ...pickupStore, store: e.currentTarget.value })
+  }
+
+  const onChangeTime = (e: ChangeEvent<HTMLSelectElement>) => {
+    setPickupStore({ ...pickupStore, time: e.currentTarget.value })
+  }
+
+  const handleStore = () => {
+    if (pickupStore.store && pickupStore.time) {
+      setIsServices(true)
+      router.push('/')
+    }
+
+    if (!pickupStore?.store?.length) {
+      setError({ ...error, store: true })
+    }
+    if (!pickupStore?.time?.length) {
+      setError({ ...error, time: true })
+    }
+  }
+
   return (
     <div className='space-y-5'>
+      <h2 className='text-center font-semibold text-gray-500 uppercase'>
+        Selecciona tu tienda
+      </h2>
       <div className='flex flex-col'>
         <label htmlFor='selected-store'>Selecciona tienda</label>
         <select
           id='selected-store'
           defaultValue=''
           className='h-10 outline-none inset-2 border border-gray-400 rounded-full bg-white'
+          onChange={e => onChangeStore(e)}
         >
           <option value=''>Selecciona</option>
-          <option value=''>Laureles (Cq. 4 ##73-04)</option>
-          <option value=''>Floresta (Cra. 84 #45d-24)</option>
+          <option value='Laureles (Cq. 4 ##73-04)'>
+            Laureles (Cq. 4 ##73-04)
+          </option>
+          <option value='Floresta (Cra. 84 #45d-24)'>
+            Floresta (Cra. 84 #45d-24)
+          </option>
         </select>
+        {error.store && (
+          <p className='text-xs text-red-300'>Campo obligatorio</p>
+        )}
+      </div>
+
+      <div className='flex flex-col'>
+        <label htmlFor='selected-time'>Selecciona hora de recogida</label>
+        <select
+          id='selected-time'
+          defaultValue=''
+          className='h-10 outline-none inset-2 border border-gray-400 rounded-full bg-white'
+          onChange={e => onChangeTime(e)}
+        >
+          <option value=''>Selecciona</option>
+          <option value='12:00 pm'>12:00 pm</option>
+          <option value='12:30 pm'>12:30 pm</option>
+          <option value='1:00 pm'>1:00 pm</option>
+          <option value='1:30 pm'>1:30 pm</option>
+          <option value='2:00 pm'>2:00 pm</option>
+          <option value='2:30 pm'>2:30 pm</option>
+          <option value='3:00 pm'>3:00 pm</option>
+          <option value='3:30 pm'>3:30 pm</option>
+          <option value='4:00 pm'>4:00 pm</option>
+          <option value='4:30 pm'>4:30 pm</option>
+          <option value='5:00 pm'>5:00 pm</option>
+          <option value='5:30 pm'>5:30 pm</option>
+          <option value='6:00 pm'>6:00 pm</option>
+          <option value='6:30 pm'>6:30 pm</option>
+          <option value='7:00 pm'>7:00 pm</option>
+          <option value='7:30 pm'>7:30 pm</option>
+          <option value='8:00 pm'>8:00 pm</option>
+          <option value='8:30 pm'>8:30 pm</option>
+          <option value='9:00 pm'>9:00 pm</option>
+          <option value='9:30 pm'>9:30 pm</option>
+          <option value='10:00 pm'>10:00 pm</option>
+        </select>
+        {error.time && (
+          <p className='text-xs text-red-300'>Campo obligatorio</p>
+        )}
       </div>
 
       <div className='flex items-center justify-center space-x-4'>
@@ -244,12 +361,7 @@ const Store = ({ dispatchServices }: IStore) => {
         >
           Volver
         </button>
-        <button
-          className='btn-md border border-gray-400'
-          onClick={() => {
-            setIsServices(true)
-          }}
-        >
+        <button className='btn-md border border-gray-400' onClick={handleStore}>
           Siguiente
         </button>
       </div>
