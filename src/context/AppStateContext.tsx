@@ -2,7 +2,7 @@
 
 import { useCallback, useReducer } from 'react'
 import constate from 'constate'
-import { Category, IBooking, Product } from '../utils/types'
+import { Category, IBooking, Product, Prom } from '../utils/types'
 
 type AppState = {
   isLoading: boolean
@@ -11,7 +11,7 @@ type AppState = {
   booking?: IBooking
   products: Product[]
   categories: Category[]
-  proms: Product[]
+  proms: Prom[]
   banner: Product[]
   cart: Product[]
 }
@@ -50,7 +50,7 @@ type Action =
     }
   | {
       type: 'SET_PROMS'
-      payload: Product[]
+      payload: Prom[]
     }
   | {
       type: 'SET_BANNER'
@@ -175,7 +175,7 @@ const useAppState = () => {
   )
 
   const setProms = useCallback(
-    (proms: Product[]) => {
+    (proms: Prom[]) => {
       dispatch({
         type: 'SET_PROMS',
         payload: proms

@@ -17,6 +17,7 @@ export interface ICategories {
 
 export interface Category {
   name?: string
+  description?: string
   tag?: string
   icon?: IImage
   poster?: IImage
@@ -42,7 +43,15 @@ export interface Banner {
 }
 
 export interface IProms {
-  proms: Product[]
+  proms: Proms[]
+}
+
+export interface Prom {
+  name?: string
+  description?: string
+  order?: number
+  thumbnail?: IImage
+  products: Product[]
 }
 
 export interface ICart {
