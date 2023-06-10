@@ -37,8 +37,8 @@ export default function PromsScroll ({ title, viewMore, loading, proms  }: IProm
                     key={key}
                     loading={loading}
                     variant='rounded'
-                    height='256px'
-                    width='128px'
+                    height='128px'
+                    width='256px'
                   >
                     <ArticleProms
                       prom={prom}

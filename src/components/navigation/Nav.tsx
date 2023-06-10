@@ -53,10 +53,19 @@ export default function Nav () {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Perform localStorage action
-      const cache = localStorage.getItem('deliveryAddress')
-      if (cache) {
-        const parsedData = JSON.parse(cache)
-        if (parsedData.data.address) {
+      const cacheDelivery = localStorage.getItem('deliveryAddress')
+      const cachePickup = localStorage.getItem('pickupStore')
+
+      if (cacheDelivery) {
+        const parsedDataDelivery = JSON.parse(cacheDelivery)
+        if (parsedDataDelivery.delivery.address) {
+          setIsServices(true)
+        }
+      }
+
+      if (cachePickup) {
+        const parsedDataPickup = JSON.parse(cachePickup)
+        if (parsedDataPickup.store.store) {
           setIsServices(true)
         }
       }
