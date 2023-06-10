@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { hygraph } from '../services/Api'
 
 import { useAppStateContext } from '../context/AppStateContext'
-import { IProms, Product } from '../utils/types'
+import { IProms, Prom } from '../utils/types'
 
 const listProms = gql`
   {
@@ -12,10 +12,20 @@ const listProms = gql`
       id
       name
       description
-      price
+      order
       thumbnail {
         fileName
         url
+      }
+      products {
+        name
+        price
+        description
+        stage
+        thumbnail {
+          fileName
+          url
+        }
       }
     }
   }
@@ -35,7 +45,7 @@ export const useProms = () => {
     },
     cacheTime: 60 * 60 * 1000,
     onSuccess: (data) => {
-      setProms(data as Product[])
+      setProms(data as Prom[])
     },
   })
 
