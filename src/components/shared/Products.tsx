@@ -9,8 +9,8 @@ import ArticleProducts from '../articles/ArticleProducts'
 import DetailProduct from './DetailProduct'
 
 type Products = {
-  loading: boolean
-  products: Product[]
+  loading?: boolean
+  products: Product[] | undefined
 }
 
 export default function Products ({ loading, products }: Products) {

@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import Skeleton from './Skeleton'
 
 type SkeletonTableProps = {
-  loading: boolean
+  loading?: boolean
   children: JSX.Element
   variant?: string
   height?: string
