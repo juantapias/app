@@ -18,6 +18,7 @@ export interface ICategories {
 export interface Category {
   name?: string
   description?: string
+  slug?: string
   tag?: string
   icon?: IImage
   poster?: IImage

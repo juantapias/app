@@ -11,6 +11,7 @@ const listCategories = gql`
     categories {
       id
       name
+      slug
       icon {
         fileName
         url

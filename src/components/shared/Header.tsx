@@ -32,7 +32,7 @@ export default function Header ({ goBack, title, cartBtn }: IHeader) {
               </button>
             )}
             <div className={'flex items-center justify-center col-start-2'}>
-              <h1 className='text-center'>{title}</h1>
+              <h1 className='text-center capitalize'>{title}</h1>
             </div>
             {!inRestaurant && (
               <Fragment>
