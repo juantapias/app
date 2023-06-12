@@ -7,8 +7,6 @@ import { Product } from '../../utils/types'
 
 import { RiFireFill } from 'react-icons/ri'
 
-import Test from '../../assets/images/test.jpg'
-
 type IArticleProduct = {
   product: Product
   dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
@@ -32,10 +30,12 @@ export default function ArticleProduct ({
     >
       <figure className='w-1/2'>
         <Image
-          src={Test}
-          alt='prueba'
+          src={product?.thumbnail?.url || ''}
+          alt={product.name}
           layout='responsive'
-          className='rounded-lg'
+          className='rounded-lg max-w-full'
+          height={65}
+          width={100}
         />
       </figure>
       <div className='w-1/2 space-y-2'>
@@ -54,11 +54,11 @@ export default function ArticleProduct ({
         </div>
         <div className='flex items-center justify-between'>
           <p className='text-xl font-semibold leading-none'>${product.price}</p>
-          <div className='flex items-center space-x-2'>
-            <RiFireFill size={15} />
-            <RiFireFill size={15} />
-            <RiFireFill size={15} />
-          </div>
+          {product.tags?.length && (
+            <div className='flex items-center space-x-2'>
+              {product.tags.includes('Picante') && <RiFireFill size={15} />}
+            </div>
+          )}
         </div>
       </div>
     </article>

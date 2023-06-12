@@ -11,17 +11,13 @@ const listProms = gql`
     proms {
       id
       name
-      description
       order
-      thumbnail {
-        fileName
-        url
-      }
-      products {
+      productProms {
+        id
         name
-        price
         description
-        stage
+        price
+        tags
         thumbnail {
           fileName
           url
