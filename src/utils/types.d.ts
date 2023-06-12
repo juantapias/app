@@ -83,3 +83,27 @@ export interface IBooking {
   people: string
   request: string
 }
+
+export interface IInfo {
+  infos: Info[]
+}
+
+export interface Info {
+  id?: string
+  company?: string
+  address?: string
+  location?: ILocation
+  social?: ISocial
+}
+
+export interface ILocation {
+  latitude?: string
+  longitude?: string
+}
+
+export interface ISocial {
+  whatsapp?: string
+  instagram?: string
+  twitter?: string
+  tiktok?: string
+}

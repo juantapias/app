@@ -12,7 +12,6 @@ export default function ArticleProms ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProms) {
-  console.log('🚀 ~ file: ArticleProms.tsx:15 ~ prom:', prom)
   const handleSelectedProduct = () => {
     dispatchSelectedProduct(prom)
     dispatchDetailProduct(true)

@@ -7,6 +7,7 @@ import { totalPay } from '../../utils/calc'
 import { useAppStateContext } from '../../context/AppStateContext'
 import { whatsAppOrder } from '../../helpers'
 import { CgSpinner } from 'react-icons/cg'
+import { useInfo } from '@/hooks'
 
 type ITotalPay = {
   products: Product[]
@@ -14,6 +15,10 @@ type ITotalPay = {
 
 export default function TotalPay ({ products }: ITotalPay) {
   const { clearCart } = useAppStateContext()
+
+  const { data } = useInfo()
+
+  const whatsappNumber: string = data?.infos.map(i => i.social?.whatsapp).toString() || ''
 
   const [order] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
@@ -24,7 +29,7 @@ export default function TotalPay ({ products }: ITotalPay) {
       order?.push(`${product.name} x${product.quantity} -> $${product.price}`)
     })
 
-    whatsAppOrder(order, products)
+    whatsAppOrder(order, products, whatsappNumber)
     setIsSubmitting(false)
     clearCart()
   }
