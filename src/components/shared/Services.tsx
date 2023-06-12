@@ -15,9 +15,12 @@ import { useAppStateContext } from '../../context/AppStateContext'
 
 import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
 
-type ICache = {
+type ICacheDeliver = {
   city?: string
   address?: string
+}
+
+type ICachePickup = {
   store?: string
   time?: string
 }
@@ -107,7 +110,7 @@ const Delivery = ({ dispatchServices }: IDelivery) => {
   const router = useRouter()
   const { setIsServices } = useAppStateContext()
 
-  const [deliveryAddress, setDeliveryAddress] = useState<ICache>({
+  const [deliveryAddress, setDeliveryAddress] = useState<ICacheDeliver>({
     city: '',
     address: ''
   })
@@ -229,7 +232,7 @@ const Store = ({ dispatchServices }: IStore) => {
   const router = useRouter()
   const { setIsServices } = useAppStateContext()
 
-  const [pickupStore, setPickupStore] = useState<ICache>({
+  const [pickupStore, setPickupStore] = useState<ICachePickup>({
     store: '',
     time: ''
   })

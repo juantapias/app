@@ -1,14 +1,13 @@
-import { IBooking, Product } from '../utils/types'
-
-import { totalPay } from '../utils/calc'
 import moment from 'moment'
+
+import { IBooking, Product } from '../utils/types'
+import { totalPay } from '../utils/calc'
 
 export const classNames = (...classes: any[]) => {
   return classes.filter(Boolean).join(' ')
 }
 
-export const whatsAppOrder = (order: string[], products: Product[]) => {
-  const whatsapp: number = +573002964590
+export const whatsAppOrder = (order: string[], products: Product[], whatsapp: string) => {
 
   const orderStructure = order.toString().replace(',', '\n')
 
