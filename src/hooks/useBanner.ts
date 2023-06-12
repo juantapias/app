@@ -8,7 +8,7 @@ import { IBanners, Product } from '../utils/types'
 
 const getBanner = gql`
   {
-    banners(where: { homeViewable: true }) {
+    banners(where: {homeViewable: true}) {
       id
       name
       description

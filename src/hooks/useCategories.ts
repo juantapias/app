@@ -16,15 +16,16 @@ const listCategories = gql`
         fileName
         url
       }
-      poster {
+      thumbnail {
         fileName
         url
       }
       products {
+        id
         name
-        price
         description
-        stage
+        price
+        tags
         thumbnail {
           fileName
           url

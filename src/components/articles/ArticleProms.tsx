@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Product } from '../../utils/types'
+import { Product, ProductProm } from '../../utils/types'
 
 type IArticleProms = {
-  prom: Product
+  prom: ProductProm
   dispatchSelectedProduct: Dispatch<SetStateAction<Product | undefined>>
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
@@ -12,6 +12,7 @@ export default function ArticleProms ({
   dispatchSelectedProduct,
   dispatchDetailProduct
 }: IArticleProms) {
+  console.log('🚀 ~ file: ArticleProms.tsx:15 ~ prom:', prom)
   const handleSelectedProduct = () => {
     dispatchSelectedProduct(prom)
     dispatchDetailProduct(true)

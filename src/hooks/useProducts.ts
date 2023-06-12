@@ -10,19 +10,13 @@ const listProducts = gql`
   {
     products {
       id
-      locale
       name
       description
       price
-      slug
-      stage
+      tags
       thumbnail {
         fileName
         url
-      }
-      categories {
-        id
-        name
       }
     }
   }

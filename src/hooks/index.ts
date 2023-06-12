@@ -1,4 +1,5 @@
 export { useProducts } from './useProducts'
 export { useCategories } from './useCategories'
 export { useProms } from './useProms'
+export { useFeaturedProms } from './useFeaturedProms'
 export { useBanner } from './useBanner'
