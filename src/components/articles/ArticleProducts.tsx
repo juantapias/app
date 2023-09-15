@@ -5,7 +5,7 @@ import Image from 'next/legacy/image'
 
 import { Product } from '../../utils/types'
 
-import { RiFireFill } from 'react-icons/ri'
+import { IconFlame, IconLeaf } from '@tabler/icons-react'
 
 type IArticleProduct = {
   product: Product
@@ -13,21 +13,29 @@ type IArticleProduct = {
   dispatchDetailProduct: Dispatch<SetStateAction<boolean>>
 }
 
-export default function ArticleProduct ({
+export default function ArticleProduct({
   product,
   dispatchSelectedProduct,
-  dispatchDetailProduct
+  dispatchDetailProduct,
 }: IArticleProduct) {
   const handleSelectedProduct = () => {
     dispatchSelectedProduct(product)
     dispatchDetailProduct(true)
   }
 
+  const IconRender = () => {
+    switch (product.tags) {
+      case 'Picante':
+        return <IconFlame size={15} />
+      case 'Veggie':
+        return <IconLeaf size={15} />
+    }
+  }
+
   return (
     <article
       className='bg-white p-4 rounded-xl flex items-center space-x-4'
-      onClick={handleSelectedProduct}
-    >
+      onClick={handleSelectedProduct}>
       <figure className='w-1/2'>
         <Image
           src={product?.thumbnail?.url || ''}
@@ -55,9 +63,7 @@ export default function ArticleProduct ({
         <div className='flex items-center justify-between'>
           <p className='text-xl font-semibold leading-none'>${product.price}</p>
           {product.tags?.length && (
-            <div className='flex items-center space-x-2'>
-              {product.tags.includes('Picante') && <RiFireFill size={15} />}
-            </div>
+            <div className='flex items-center space-x-2'>{IconRender()}</div>
           )}
         </div>
       </div>

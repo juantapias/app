@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import { useAppStateContext } from '../../context/AppStateContext'
 
-import { RiShoppingBasketLine } from 'react-icons/ri'
-import { MdChevronLeft } from 'react-icons/md'
+import { IconBasket, IconChevronLeft } from '@tabler/icons-react'
 
 type IHeader = {
   goBack?: boolean
@@ -15,7 +14,7 @@ type IHeader = {
   cartBtn?: boolean
 }
 
-export default function Header ({ goBack, title, cartBtn }: IHeader) {
+export default function Header({ goBack, title, cartBtn }: IHeader) {
   const router = useRouter()
   const { inRestaurant, cart } = useAppStateContext()
   return (
@@ -26,9 +25,8 @@ export default function Header ({ goBack, title, cartBtn }: IHeader) {
             {goBack && (
               <button
                 className='flex items-center justify-center bg-white rounded-full h-10 w-10 shadow-md float-right'
-                onClick={() => router.back()}
-              >
-                <MdChevronLeft size={25} />
+                onClick={() => router.back()}>
+                <IconChevronLeft size={25} />
               </button>
             )}
             <div className={'flex items-center justify-center col-start-2'}>
@@ -39,14 +37,13 @@ export default function Header ({ goBack, title, cartBtn }: IHeader) {
                 {cart && (
                   <Link
                     href='/cart'
-                    className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md relative'
-                  >
+                    className='flex items-center justify-center ml-auto bg-white rounded-full h-10 w-10 shadow-md relative'>
                     {cart.length > 0 && (
                       <span className='absolute right-0 top-0 rounded-full bg-red-400 text-xs h-4 w-4 flex items-center justify-center'>
                         {cart.length}
                       </span>
                     )}
-                    <RiShoppingBasketLine size={20} />
+                    <IconBasket size={20} />
                   </Link>
                 )}
               </Fragment>

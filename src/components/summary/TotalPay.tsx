@@ -6,7 +6,7 @@ import { Product } from '../../utils/types'
 import { totalPay } from '../../utils/calc'
 import { useAppStateContext } from '../../context/AppStateContext'
 import { whatsAppOrder } from '../../helpers'
-import { CgSpinner } from 'react-icons/cg'
+import { IconLoader2 } from '@tabler/icons-react'
 import { useInfo } from '@/hooks'
 
 type ITotalPay = {
@@ -45,7 +45,7 @@ export default function TotalPay ({ products }: ITotalPay) {
           {!isSubmitting ? (
             'Ordenar'
           ) : (
-            <CgSpinner className='animate-spin' size={20} />
+            <IconLoader2 className='animate-spin' size={20} />
           )}
         </button>
       </div>

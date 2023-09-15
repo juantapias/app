@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { FaInstagram } from 'react-icons/fa'
+import { IconBrandInstagram } from '@tabler/icons-react'
 
 import SocialData from '../../data/social.json'
 
@@ -9,7 +9,7 @@ export default function Social () {
   const socialMatch = (social: string) => {
     switch (social) {
       case 'Instagram':
-        return <FaInstagram size={30} />
+        return <IconBrandInstagram size={30} />
     }
   }
   return (

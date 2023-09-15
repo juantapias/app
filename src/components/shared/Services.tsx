@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 
 import { useAppStateContext } from '../../context/AppStateContext'
 
-import { MdOutlineDeliveryDining, MdOutlineStorefront } from 'react-icons/md'
+import { IconMoped, IconBuildingStore } from '@tabler/icons-react'
 
 type ICacheDeliver = {
   city?: string
@@ -42,12 +42,12 @@ export default function Services () {
     {
       title: 'Domicilios',
       target: 'delivery',
-      icon: <MdOutlineDeliveryDining size={30} />
+      icon: <IconMoped size={30} />
     },
     {
       title: 'Retirar en tienda',
       target: 'store',
-      icon: <MdOutlineStorefront size={30} />
+      icon: <IconBuildingStore size={30} />
     }
   ]
 

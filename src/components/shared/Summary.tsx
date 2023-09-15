@@ -5,7 +5,7 @@ import React from 'react'
 import { useAppStateContext } from '@/context/AppStateContext'
 import { Product } from '@/utils/types'
 
-import { IoTrashOutline } from 'react-icons/io5'
+import { IconTrash } from '@tabler/icons-react'
 import TotalPay from '../summary/TotalPay'
 import ProductSummary from '../summary/ProductSummary'
 import EmptySearch from './EmptySearch'
@@ -25,7 +25,7 @@ export default function Summary ({ products }: ISummary) {
               <div className='bg-white rounded-3xl p-4 space-y-5'>
                 <div className='flex justify-end'>
                   <button onClick={clearCart}>
-                    <IoTrashOutline size={20} />
+                    <IconTrash size={20} />
                   </button>
                 </div>
 

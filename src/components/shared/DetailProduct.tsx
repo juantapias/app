@@ -16,7 +16,7 @@ import { useAppStateContext } from '../../context/AppStateContext'
 import { classNames } from '../../helpers'
 import { Product } from '../../utils/types'
 
-import { MdClose } from 'react-icons/md'
+import { IconX } from '@tabler/icons-react'
 
 type IDetailProduct = {
   isDetailProduct: boolean
@@ -99,7 +99,7 @@ export default function DetailProduct ({
                     dispatchSelectedProduct(undefined)
                   }}
                 >
-                  <MdClose size={20} />
+                  <IconX size={20} />
                 </button>
               </div>
             </div>

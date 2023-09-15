@@ -10,37 +10,37 @@ import { classNames } from '../../helpers'
 import Services from '../shared/Services'
 
 import {
-  MdHome,
-  MdRestaurantMenu,
-  MdLocalOffer,
-  MdRoomService,
-  MdSearch
-} from 'react-icons/md'
+  IconHome2,
+  IconToolsKitchen2,
+  IconTags,
+  IconCalendarPlus,
+  IconSearch
+} from '@tabler/icons-react'
 
 const menuItem = [
   {
     label: 'Inicio',
-    icon: <MdHome size={30} />,
+    icon: <IconHome2 size={30} />,
     link: '/'
   },
   {
     label: 'Menu',
-    icon: <MdRestaurantMenu size={30} />,
+    icon: <IconToolsKitchen2 size={30} />,
     link: '/menu'
   },
   {
     label: 'Buscar',
-    icon: <MdSearch size={30} />,
+    icon: <IconSearch size={30} />,
     link: '/search'
   },
   {
     label: 'Promociones',
-    icon: <MdLocalOffer size={30} />,
+    icon: <IconTags size={30} />,
     link: '/promotions'
   },
   {
     label: 'Reservas',
-    icon: <MdRoomService size={30} />,
+    icon: <IconCalendarPlus size={30} />,
     link: '/reservations'
   }
 ]
