@@ -6,13 +6,13 @@ import { Controller, useForm } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import es from 'date-fns/locale/es'
 
-import { CgSpinner } from 'react-icons/cg'
+import { IconLoader2 } from '@tabler/icons-react'
 import { IBooking } from '@/utils/types'
 import { useAppStateContext } from '@/context/AppStateContext'
 
 registerLocale('es', es)
 
-export default function ReservationForm () {
+export default function ReservationForm() {
   const router = useRouter()
   const { setBooking } = useAppStateContext()
   const [startDate, setStartDate] = useState<any>()
@@ -21,7 +21,7 @@ export default function ReservationForm () {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<IBooking>()
 
   const handleForm = (data: IBooking) => {
@@ -102,8 +102,7 @@ export default function ReservationForm () {
           {...register('event', { required: true })}
           id='event'
           defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'
-        >
+          className='h-10 outline-none rounded-lg indent-2 bg-white'>
           <option value='' disabled>
             Selecciona
           </option>
@@ -142,8 +141,7 @@ export default function ReservationForm () {
           {...register('timeEvent', { required: true })}
           id='event'
           defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'
-        >
+          className='h-10 outline-none rounded-lg indent-2 bg-white'>
           <option value='' disabled>
             Selecciona
           </option>
@@ -167,8 +165,7 @@ export default function ReservationForm () {
           {...register('people', { required: true })}
           id='people'
           defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'
-        >
+          className='h-10 outline-none rounded-lg indent-2 bg-white'>
           <option value='' disabled>
             Selecciona
           </option>
@@ -187,8 +184,7 @@ export default function ReservationForm () {
         <textarea
           {...register('request')}
           id='request'
-          className='h-20 outline-none rounded-lg indent-2'
-        ></textarea>
+          className='h-20 outline-none rounded-lg indent-2'></textarea>
       </div>
 
       <div>
@@ -196,7 +192,7 @@ export default function ReservationForm () {
           {!isSubmitting ? (
             'Enviar'
           ) : (
-            <CgSpinner className='animate-spin' size={20} />
+            <IconLoader2 className='animate-spin' size={20} />
           )}
         </button>
       </div>
