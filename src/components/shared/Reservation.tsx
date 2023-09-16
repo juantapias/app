@@ -1,8 +1,6 @@
-import React from 'react'
-
 import ReservationForm from '../forms/ReservationForm'
 
-export default function Reservation () {
+export default function Reservation() {
   return (
     <section className='reservation'>
       <div className='container mx-auto px-4'>

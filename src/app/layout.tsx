@@ -10,7 +10,6 @@ const Nav = dynamic(() => import('../components/navigation/Nav'))
 import Loading from './loading'
 
 import './globals.css'
-import 'react-datepicker/dist/react-datepicker.css'
 
 const queryClient = new QueryClient()
 

@@ -1,201 +1,333 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Controller, useForm } from 'react-hook-form'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import es from 'date-fns/locale/es'
 
-import { IconLoader2 } from '@tabler/icons-react'
-import { IBooking } from '@/utils/types'
 import { useAppStateContext } from '@/context/AppStateContext'
 
-registerLocale('es', es)
+import { useForm } from 'react-hook-form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Input } from '../ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select'
+import { Textarea } from '../ui/textarea'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Calendar } from '../ui/calendar'
+import { Button } from '../ui/button'
+import { cn } from '@/lib/utils'
+import { format } from 'date-fns'
+import es from 'date-fns/locale/es'
+
+import { CalendarIcon } from 'lucide-react'
+import { IconLoader2 } from '@tabler/icons-react'
+import { IBooking } from '@/utils/types'
+
+const FormSchema = z.object({
+  name: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  surname: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  dni: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  phone: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  email: z
+    .string({
+      required_error: 'Este campo es requerido',
+    })
+    .email(),
+  event: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  dateEvent: z.coerce.date(),
+  timeEvent: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  people: z.string({
+    required_error: 'Este campo es requerido',
+  }),
+  request: z.string().optional(),
+})
 
 export default function ReservationForm() {
   const router = useRouter()
   const { setBooking } = useAppStateContext()
-  const [startDate, setStartDate] = useState<any>()
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm<IBooking>()
+  const [localLoading, setLocalLoading] = useState<boolean>(false)
 
-  const handleForm = (data: IBooking) => {
-    setBooking(data)
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  })
+
+  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+    setLocalLoading(true)
+    setBooking(values as unknown as IBooking)
     router.push('/confirmation')
+    setLocalLoading(false)
   }
 
   return (
-    <form onSubmit={handleSubmit(handleForm)} className='space-y-4'>
-      <div className='form-group flex flex-col'>
-        <label htmlFor='name'>Nombres</label>
-        <input
-          type='text'
-          {...register('name', { required: true })}
-          id='name'
-          className='h-10 outline-none rounded-lg indent-2'
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+        <FormField
+          control={form.control}
+          name='name'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nombres*</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type='text'
+                  className='h-10 outline-none rounded-lg indent-2'
+                  placeholder='Ingresa tu nombre'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.name && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='surname'>Apellidos</label>
-        <input
-          type='text'
-          {...register('surname', { required: true })}
-          id='surname'
-          className='h-10 outline-none rounded-lg indent-2'
+        <FormField
+          control={form.control}
+          name='surname'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Apellidos*</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type='text'
+                  className='h-10 outline-none rounded-lg indent-2'
+                  placeholder='Ingresa tu apellido'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.surname && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='dni'>Cédula</label>
-        <input
-          type='text'
-          {...register('dni', { required: true })}
-          id='dni'
-          className='h-10 outline-none rounded-lg indent-2'
+        <FormField
+          control={form.control}
+          name='dni'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Cédula*</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type='text'
+                  className='h-10 outline-none rounded-lg indent-2'
+                  placeholder='Ingresa tu dni'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.dni && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='phone'>Teléfono</label>
-        <input
-          type='text'
-          {...register('phone')}
-          id='phone'
-          className='h-10 outline-none rounded-lg indent-2'
+        <FormField
+          control={form.control}
+          name='phone'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Teléfono*</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type='text'
+                  className='h-10 outline-none rounded-lg indent-2'
+                  placeholder='Ingresa tu número de teléfono'
+                />
+              </FormControl>
+            </FormItem>
+          )}
         />
-        {errors.phone && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='mail'>Email</label>
-        <input
-          type='mail'
-          {...register('mail', { required: true })}
-          id='mail'
-          className='h-10 outline-none rounded-lg indent-2'
+        <FormField
+          control={form.control}
+          name='email'
+          render={({ ...field }) => (
+            <FormItem>
+              <FormLabel>Email*</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type='email'
+                  className='h-10 outline-none rounded-lg indent-2'
+                  placeholder='Ingresa tu correo electrónico'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.mail && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='event'>Tipo de evento</label>
-        <select
-          {...register('event', { required: true })}
-          id='event'
-          defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'>
-          <option value='' disabled>
-            Selecciona
-          </option>
-          <option value='birthday'>Cumpleaños</option>
-          <option value='anniversary'>Aniversario</option>
-          <option value='anniver'>Social</option>
-        </select>
-        {errors.event && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
+        <FormField
+          control={form.control}
+          name='event'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tipo de evento*</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className='h-10 outline-none rounded-lg indent-2'>
+                    <SelectValue placeholder='Selecciona el tipo de evento' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value='Cumpleaños'>Cumpleaños</SelectItem>
+                  <SelectItem value='Aniversario'>Aniversario</SelectItem>
+                  <SelectItem value='Social'>Social</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='dateEvent'>Día:</label>
-        <Controller
-          control={control}
+        <FormField
+          control={form.control}
           name='dateEvent'
           render={({ field }) => (
-            <DatePicker
-              {...field}
-              className='h-10 outline-none rounded-lg indent-2 bg-white w-full'
-              selected={field.value}
-              onChange={date => field.onChange(date)}
-              locale={es}
-              placeholderText='Selecciona la fecha'
-              dateFormat='dd/MM/yyyy'
-              isClearable
-            />
+            <FormItem>
+              <FormLabel>Día*</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={'outline'}
+                      className={cn(
+                        'w-full pl-3 text-left font-normal',
+                        !field.value && 'text-muted-foreground'
+                      )}>
+                      {field.value ? (
+                        format(field.value, 'PPP', { locale: es })
+                      ) : (
+                        <span>Selecciona una fecha</span>
+                      )}
+                      <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className='w-auto p-0' align='start'>
+                  <Calendar
+                    mode='single'
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={date =>
+                      date > new Date() || date < new Date('1900-01-01')
+                    }
+                    locale={es}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              <FormMessage />
+            </FormItem>
           )}
         />
-      </div>
 
-      <div className='form-group flex flex-col'>
-        <label htmlFor='timeEvent'>Hora</label>
-        <select
-          {...register('timeEvent', { required: true })}
-          id='event'
-          defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'>
-          <option value='' disabled>
-            Selecciona
-          </option>
-          <option value='12pm'>12pm</option>
-          <option value='1pm'>1pm</option>
-          <option value='2pm'>2pm</option>
-          <option value='3pm'>3pm</option>
-          <option value='4pm'>4pm</option>
-          <option value='5pm'>5pm</option>
-          <option value='6pm'>6pm</option>
-          <option value='7pm'>7pm</option>
-          <option value='8pm'>8pm</option>
-          <option value='9pm'>9pm</option>
-          <option value='10pm'>10pm</option>
-        </select>
-      </div>
-
-      <div className='form-group flex flex-col'>
-        <label htmlFor='people'>Nr. de comensales</label>
-        <select
-          {...register('people', { required: true })}
-          id='people'
-          defaultValue=''
-          className='h-10 outline-none rounded-lg indent-2 bg-white'>
-          <option value='' disabled>
-            Selecciona
-          </option>
-          <option value='+2'>+2</option>
-          <option value='+5'>+5</option>
-          <option value='+8'>+8</option>
-          <option value='+10'>+10</option>
-        </select>
-        {errors.people && (
-          <p className='text-red-500'>Este campo es obligatorio</p>
-        )}
-      </div>
-
-      <div className='form-group flex flex-col'>
-        <label htmlFor='request'>Peticiones</label>
-        <textarea
-          {...register('request')}
-          id='request'
-          className='h-20 outline-none rounded-lg indent-2'></textarea>
-      </div>
-
-      <div>
-        <button type='submit' className='btn-md bg-red-200 mx-auto'>
-          {!isSubmitting ? (
-            'Enviar'
-          ) : (
-            <IconLoader2 className='animate-spin' size={20} />
+        <FormField
+          control={form.control}
+          name='timeEvent'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Hora*</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className='h-10 outline-none rounded-lg indent-2'>
+                    <SelectValue placeholder='Selecciona la hora del evento' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value='12pm'>12pm</SelectItem>
+                  <SelectItem value='1pm'>1pm</SelectItem>
+                  <SelectItem value='2pm'>2pm</SelectItem>
+                  <SelectItem value='3pm'>3pm</SelectItem>
+                  <SelectItem value='4pm'>4pm</SelectItem>
+                  <SelectItem value='5pm'>5pm</SelectItem>
+                  <SelectItem value='6pm'>6pm</SelectItem>
+                  <SelectItem value='7pm'>7pm</SelectItem>
+                  <SelectItem value='8pm'>8pm</SelectItem>
+                  <SelectItem value='9pm'>9pm</SelectItem>
+                  <SelectItem value='10pm'>10pm</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
           )}
-        </button>
-      </div>
-    </form>
+        />
+
+        <FormField
+          control={form.control}
+          name='people'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nr. de comensales*</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className='h-10 outline-none rounded-lg indent-2'>
+                    <SelectValue placeholder='Selecciona la cantidad de invitados' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value='+2'>+2</SelectItem>
+                  <SelectItem value='+5'>+5</SelectItem>
+                  <SelectItem value='+8'>+8</SelectItem>
+                  <SelectItem value='+10'>+10</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='request'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Peticiones</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder='Tell us a little bit about yourself'
+                  className='resize-none'
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <div>
+          <Button type='submit' className='btn-md bg-red-200 mx-auto'>
+            {!localLoading ? (
+              'Enviar'
+            ) : (
+              <IconLoader2 className='animate-spin' size={20} />
+            )}
+          </Button>
+        </div>
+      </form>
+    </Form>
   )
 }
